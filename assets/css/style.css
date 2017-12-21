@@ -32,6 +32,7 @@ body {
 /*overflow: scroll;*/
 #chat {
 	overflow-y: scroll;
+	height: 120px;
 }
 
 .footerCollapsed {
