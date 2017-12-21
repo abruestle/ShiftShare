@@ -33,16 +33,18 @@ function chat() {
 
 // $(".footer").mouseenter( showFooter()).mouseleave( collapseFooter() );
 
-$("#chat").on("change", showFooter);
-$(".chatTalkGroup").on("click", showFooter);
+
+$("#chat").bind("DOMSubtreeModified", function() {
+  showFooter();
+    setTimeout(function() {
+    	collapseFooter();
+    }, 5000);
+});
 
 $("body").on("click", "#chatEnter", function() {
 	chat();
 });
 
-$("body").on("hover", ".footer", function() {
-	showFooter();
-});
 
 $( ".footer" ).hover(
   function() {
