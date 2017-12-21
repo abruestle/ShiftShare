@@ -1,0 +1,18 @@
+#chat p {
+	margin-bottom:0px;
+	line-height:22px;
+}
+
+.chatName {
+	font-weight:bold;
+}
+
+#chat p:not(.chatName) {
+	margin-left:20px;
+}
+
+/*overflow: scroll;*/
+#chat {
+	height: 100px;
+	overflow: scroll;
+}
