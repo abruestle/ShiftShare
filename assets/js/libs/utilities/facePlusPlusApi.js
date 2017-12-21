@@ -18,7 +18,7 @@
                         data.append('image_file', file);
                     });
                     // If you want to add an extra field for the FormData
-                    data.append("image_file", $('#file').val());
+                    data.append("image_file", $('#' + file_input_id).val());
                     data.append("api_key", this.api_key);
                     data.append("api_secret", this.api_secret);
                     var token = ""
