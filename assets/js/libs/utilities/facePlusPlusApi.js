@@ -3,7 +3,7 @@
                 /// Face++ api 
                 // Author: Bradley Pulaski
                 // detectFaceFromForm() argument is file input id, returns face token
-                // analyzeFace() argument is face token, returns coordinates of facial landmarks
+                // analyzeFace() argument is face token, returns coordinates of facial landmarks and face rectangle bounding box
 
                 this.api_key = "4t2b5e4MCSdAU0ij3IYu6fAM_T50sc5k";
                 this.api_secret = "_T3VEWO8jHrUbsRYddGye4Ow2QkY_vzJ";
