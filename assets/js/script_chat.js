@@ -43,3 +43,12 @@ $("body").on("click", "#chatEnter", function() {
 $("body").on("hover", ".footer", function() {
 	showFooter();
 });
+
+$( ".footer" ).hover(
+  function() {
+    showFooter();
+  }, function() {
+    collapseFooter();
+  }
+);
+
