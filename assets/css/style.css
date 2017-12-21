@@ -11,8 +11,24 @@
 	margin-left:20px;
 }
 
+.footer div .form-group {
+	margin-top: 20px;
+}
+
+
 /*overflow: scroll;*/
 #chat {
-	height: 100px;
-	overflow: scroll;
+	height: 120px;
+	overflow-y: scroll;
+}
+
+.footerCollapsed {
+  /* CSS for the collapsed footer! Yay!*/
+  height: 80px;
+}
+
+
+.bodyCollapsed {
+  /* CSS for the collapsed footer! Yay!*/
+  margin-bottom: 60px; /* Margin bottom by footer height */
 }
