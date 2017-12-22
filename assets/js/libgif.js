@@ -1,3 +1,6 @@
+/* Added Code at 76 for canvas to png conversion and at 926 to
+    return an array of the png src tags for use later*/
+
 /*
   SuperGif
   Example usage:
@@ -71,10 +74,12 @@
         return a;
     };
 
+
+
     function convertCanvasToImage(canvas) {
-        var image = new Image();
-        image.src = canvas.toDataURL("image/png");
-        return image;
+      var image = new Image();
+      image.src = canvas.toDataURL("image/png");
+      return image;
     };
 
     // Stream
@@ -750,7 +755,9 @@
                 }
 
                 offset = frameOffsets[i];
-
+                // console.log(frames);
+                // console.log(frames[i]);
+                // console.log(frames[i].data);
                 tmpCanvas.getContext("2d").putImageData(frames[i].data, offset.x, offset.y);
                 ctx.globalCompositeOperation = "copy";
                 ctx.drawImage(tmpCanvas, 0, 0);
@@ -913,6 +920,18 @@
             get_auto_play    : function() { return options.auto_play },
             get_length       : function() { return player.length() },
             get_current_frame: function() { return player.current_frame() },
+            get_png_srcs: function() { 
+                var pngArray = [];   
+                for(var a = 0; a < player.length(); a++){
+                    player.move_to(a);
+                    var tempvar = convertCanvasToImage(canvas);
+                    // console.log(tempvar);
+                    // console.log(typeof tempvar);
+                    pngArray.push(tempvar.src);
+                    // console.log(pngArray);
+                }
+                return pngArray;
+            },
             load_url: function(src,callback){
                 if (!load_setup(callback)) return;
 
@@ -975,3 +994,4 @@
 
     return SuperGif;
 }));
+
