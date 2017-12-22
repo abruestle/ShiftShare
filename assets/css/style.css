@@ -2,7 +2,7 @@ body {
 	
    -webkit-transition: margin-bottom .2s; /* Safari */
     transition: margin-bottom .2s;
-    overflow:hidden;
+    
 }
 
 .footer2 {
@@ -29,6 +29,13 @@ body {
 	margin-top: 20px;
 }
 
+#images: {
+	margin-top:20px;
+}
+
+.card {
+	padding: 5px;
+}
 
 /*overflow: scroll;*/
 #chat {

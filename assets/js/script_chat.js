@@ -11,6 +11,7 @@ function showFooter() {
   $("body").removeAttr("class");
   $(".footer2").attr("class","footer footer2");
   $("#chat").collapse("show");
+  setTimeout(function(){ $("#chat").scrollTop($("#chat")[0].scrollHeight); }, 380);
 }
 
 function chat() {
@@ -25,6 +26,7 @@ function chat() {
         //code here to send out to firebase
 	}
 	$("#chatText").val("");
+
 	$("#chat").scrollTop($("#chat")[0].scrollHeight);
 }
 
