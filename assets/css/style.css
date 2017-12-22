@@ -1,8 +1,11 @@
 body {
 	
-   -webkit-transition: margin-bottom .2s; /* Safari */
+   -webkit-transition: margin-bottom .2s;  Safari 
     transition: margin-bottom .2s;
     
+}*/
+.footer {
+	position: fixed;
 }
 
 .footer2 {
@@ -49,7 +52,7 @@ body {
 }
 
 
-.bodyCollapsed {
+/*.bodyCollapsed {
   /* CSS for the collapsed footer! Yay!*/
-  margin-bottom: 60px; /* Margin bottom by footer height */
-}
+  /*margin-bottom: 60px;  Margin bottom by footer height */
+/*}*/
