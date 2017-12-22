@@ -10,6 +10,8 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
+var currentUser = "defaultUser";
+
 // collapsing chat event handlers
 
 function collapseFooter() {
@@ -34,15 +36,20 @@ function chat() {
 
 		var p = $("<p>");
     var textInput = $("#chatText").val();
-		p.text(textInput);
+		// p.text(textInput);
     // $("#chat").append(p);
     //code here to send out to firebase
     database.ref().set({
-      chat: textInput
+      chat: textInput,
+      user: currentUser
     });
 	}
 	$("#chatText").val("");
 	$("#chat").scrollTop($("#chat")[0].scrollHeight);
+}
+
+function setUser(user){
+  currentUser = user;
 }
 
 // Triggers for uncollapsing: hover over chat; new text added to chat
@@ -74,6 +81,7 @@ database.ref().on("value", function(snapshot){
   if(snapshot.val() == null){
   }
   else{
+    $("#chat").append("<p class=\"chatName\">" + snapshot.val().user + "</p>");
     $("#chat").append("<p>"+snapshot.val().chat + "</p>");
   }
 },function(error){
