@@ -24,6 +24,19 @@ body {
 	font-weight:bold;
 }
 
+.progress {
+	margin-top:5px;
+	
+}
+
+.progress-bar {
+	height:31px;
+}
+
+.btn-sm {
+	margin:5px;
+}
+
 #chat p:not(.chatName) {
 	margin-left:20px;
 }
@@ -32,7 +45,7 @@ body {
 	margin-top: 20px;
 }
 
-#images: {
+#images {
 	margin-top:20px;
 }
 
@@ -54,5 +67,4 @@ body {
 
 /*.bodyCollapsed {
   /* CSS for the collapsed footer! Yay!*/
-  /*margin-bottom: 60px;  Margin bottom by footer height */
 /*}*/
