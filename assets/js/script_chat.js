@@ -26,6 +26,7 @@ function showFooter() {
   $("body").removeAttr("class");
   $(".footer2").attr("class","footer footer2");
   $("#chat").collapse("show");
+  setTimeout(function(){ $("#chat").scrollTop($("#chat")[0].scrollHeight); }, 380);
 }
 
 function chat() {
@@ -45,6 +46,7 @@ function chat() {
     });
 	}
 	$("#chatText").val("");
+
 	$("#chat").scrollTop($("#chat")[0].scrollHeight);
 }
 
