@@ -8,6 +8,7 @@
 		<link href="assets/css/reset.css" rel="stylesheet">
 		<link href="assets/css/sticky-footer.css" rel="stylesheet">
 		<link href="assets/css/style.css" rel="stylesheet">
+		<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
 		<script type="text/javascript" src="assets/js/libs/libgif.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 	</head>
@@ -59,7 +60,7 @@
 					<div class="row" id="accordion" role="tablist" aria-multiselectable="true">
 						<div class="col">
 							<div class="card">
-								<div class="card-header" role="tab" id="headingCategoryTopics">
+								<div class="card-header" role="tab" id="headingCategoryTopics" data-toggle="collapse" data-parent="#accordion" href="#collapseCategoryTopics" aria-expanded="false" aria-controls="collapseCategoryTopics">
 									<h5 class="mb-0">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapseCategoryTopics" aria-expanded="false" aria-controls="collapseCategoryTopics">
 										Group Name
@@ -74,7 +75,7 @@
 						</div>
 						<div class="col">
 							<div class="card">
-								<div class="card-header" role="tab" id="headingMyTopics">
+								<div class="card-header" role="tab" id="headingMyTopics" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseMyTopics" aria-expanded="false" aria-controls="collapseMyTopics">
 									<h5 class="mb-0">
 									<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseMyTopics" aria-expanded="false" aria-controls="collapseMyTopics">
 										My Topics
@@ -83,24 +84,21 @@
 								</div>
 								<div id="collapseMyTopics" class="collapse" role="tabpanel" aria-labelledby="headingMyTopics">
 									<div class="card-block">
-										Button
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="col">
 							<div class="card">
-								<div class="card-header" role="tab" id="headingGifEffects">
+								<div class="card-header" role="tab" id="headingGifEffects" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseGifEffects" aria-expanded="false" aria-controls="collapseGifEffects">
 									<h5 class="mb-0">
-									<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseGifEffects" aria-expanded="false" aria-controls="collapseTwo">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseGifEffects" aria-expanded="false" aria-controls="collapseGifEffects">
 										Gif Effects
 									</a>
 									</h5>
 								</div>
 								<div id="collapseGifEffects" class="collapse" role="tabpanel" aria-labelledby="headingGifEffects">
-									
 									<div class="card-block">
-										Button Button Button
 									</div>
 								</div>
 							</div>
@@ -110,24 +108,6 @@
 					<div class="row">
 						<div class="col">
 							<div class="card-columns" id="images">
-							
-								<div class="card">
-									<img class="card-img-top img-fluid" src="http://lorempixel.com/400/200/cats/" alt="Name of Gif and effects?">
-									<div class="card-block">
-										<!-- <h4 class="card-title">Card title that wraps to a new line</h4> -->
-										<div class="row justify-content-center">
-											<div class="col-md-2">
-												<button type="button" class="btn btn-primary btn-sm">Share</button>
-											</div>
-											<div class="col-md-1"></div>
-											<div class="col-md-9">
-												<div class="progress">
-													<div class="progress-bar" style="width:70%"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
 								
 								<div class="card">
 									<img class="card-img-top img-fluid" src="http://lorempixel.com/400/200/cats/" alt="Name of Gif and effects?">
@@ -146,79 +126,6 @@
 										</div>
 									</div>
 								</div>
-								
-								<div class="card">
-									<img class="card-img-top img-fluid" src="http://lorempixel.com/400/200/cats/" alt="Name of Gif and effects?">
-									<div class="card-block">
-										<!-- <h4 class="card-title">Card title that wraps to a new line</h4> -->
-										<div class="row justify-content-center">
-											<div class="col-md-2">
-												<button type="button" class="btn btn-primary btn-sm">Share</button>
-											</div>
-											<div class="col-md-1"></div>
-											<div class="col-md-9">
-												<div class="progress">
-													<div class="progress-bar" style="width:70%"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="card">
-									<img class="card-img-top img-fluid" src="http://lorempixel.com/400/200/cats/" alt="Name of Gif and effects?">
-									<div class="card-block">
-										<!-- <h4 class="card-title">Card title that wraps to a new line</h4> -->
-										<div class="row justify-content-center">
-											<div class="col-md-2">
-												<button type="button" class="btn btn-primary btn-sm">Share</button>
-											</div>
-											<div class="col-md-1"></div>
-											<div class="col-md-9">
-												<div class="progress">
-													<div class="progress-bar" style="width:70%"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="card">
-									<img class="card-img-top img-fluid" src="http://lorempixel.com/400/200/cats/" alt="Name of Gif and effects?">
-									<div class="card-block">
-										<!-- <h4 class="card-title">Card title that wraps to a new line</h4> -->
-										<div class="row justify-content-center">
-											<div class="col-md-2">
-												<button type="button" class="btn btn-primary btn-sm">Share</button>
-											</div>
-											<div class="col-md-1"></div>
-											<div class="col-md-9">
-												<div class="progress">
-													<div class="progress-bar" style="width:70%"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="card">
-									<img class="card-img-top img-fluid" src="http://lorempixel.com/400/200/cats/" alt="Name of Gif and effects?">
-									<div class="card-block">
-										<!-- <h4 class="card-title">Card title that wraps to a new line</h4> -->
-										<div class="row justify-content-center">
-											<div class="col-md-2">
-												<button type="button" class="btn btn-primary btn-sm">Share</button>
-											</div>
-											<div class="col-md-1"></div>
-											<div class="col-md-9">
-												<div class="progress">
-													<div class="progress-bar" style="width:70%"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							
 							</div>
 						</div>
 					</div>
