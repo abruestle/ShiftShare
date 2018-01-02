@@ -18,7 +18,7 @@ var gifRetriever = {
 	},
 	createGif: function(topic) {
 		// Creates a gif based on which button was pressed
-    	queryURL = "https://api.giphy.com/v1/gifs/search?q="+topic+"&api_key=dc6zaTOxFJmzC";
+    	queryURL = "https://api.giphy.com/v1/gifs/random?tag="+topic+"&api_key=dc6zaTOxFJmzC";
 
     	//random does only 1 gif at a time, so ajax needs to be inside of the for loop if doing random - unfotunately, that does not give rating. A next step for this would be reverse searching to find the rating based on the gif, so both could be done.
 
@@ -26,41 +26,22 @@ var gifRetriever = {
 	      url: queryURL,
 	      method: 'GET'
 	    }).done(function(response) {
-	      // console.log(response);
+	    	var image_url = response.data.image_url.replace("/giphy.gif", "");
 
-	      //3. When the user clicks on a button, the page should grab 10 static, non-animated gif images from the GIPHY API and place them on the page.
-
-	      	// console.log(response.data);
-
-	      for (var i = 0; i < 10; i++) {
-	      	$("#images").prepend('<div class="thumbnail grid-item"><img src="'+response.data[i].images.fixed_height_still.url+'" data-still = "'+response.data[i].images.fixed_height_still.url+'" data-animate = "'+response.data[i].images.fixed_height.url+'" data-state = "still" class="gif caption"><p>Rated '+response.data[i].rating+'</p></div></div>');
-	      }
-	      //<div class="col-md-2">
-	      // response.data[i].rating
-	      //     5. Under every gif, display its rating (PG, G, so on).
-	      // response.data[i].rating
-	      // * This data is provided by the GIPHY API.
-	      // * Only once you get images displaying with button presses should you move on to the next step.
-	      //Fixed still: fixed_height_still
-	      //fixed_height
+	    	$("#images").prepend('<div class="card"><img class="card-img-top img-fluid" src="'+ image_url +'/200w_s.gif" data-still = "'+ image_url +'/200w_s.gif" data-animate = "'+ image_url +'/200w_d.gif" data-state = "still" class="gif"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm shift" value="'+ image_url +'">Shift!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm share" value="'+ image_url +'">Share!</button></div><div class="col"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div>');
 	    });
 
-	 //    $('.grid').masonry({
-		//   // options
-		//   itemSelector: '.grid-item',
-		//   columnWidth: 200
-		// });
 	},
 	getCategory: function() {
 		//
 		$("#categoryTopics").empty();
 		for (var i = 0; i < gifRetriever.topics[gifRetriever.topicCategories.indexOf((gifRetriever.curCategory).toLowerCase())].length; i++) {
-			$("#categoryTopics").append(gifRetriever.buttonCreator(gifRetriever.topics[gifRetriever.topicCategories.indexOf((gifRetriever.curCategory).toLowerCase())][i], "categoryTopics"));
+			$("#categoryTopics").append(gifRetriever.buttonCreator(gifRetriever.topics[gifRetriever.topicCategories.indexOf((gifRetriever.curCategory).toLowerCase())][i], "CategoryTopics"));
 		}
-		$("#categoryName").text(gifRetriever.toTitleCase(gifRetriever.curCategory));
-
-		$("#panel-element-850776").collapse("show");
-		$("#panel-element-265940").collapse("hide");
+		$("#headingCategoryTopics a").text(gifRetriever.toTitleCase(gifRetriever.curCategory));
+		$("#collapseMyTopics").collapse("hide");
+		$("#collapseCategoryTopics").collapse("show");
+		$("#collapseGifEffects").collapse("hide");
 	},
 	animate: function(image) {
 		//Animates or stills gif
@@ -82,9 +63,9 @@ var gifRetriever = {
 	startUp: function() {
 		//starts program up
 		//Creates dropdown list of categories
-		$("#categories ul").empty();
+		$("#categories").empty();
 		for (var i = 0; i < gifRetriever.topicCategories.length; i++) {
-			$("#categories ul").append('<li><a href="#">'+gifRetriever.toTitleCase(gifRetriever.topicCategories[i])+'</a></li>');
+			$("#categories").append('<a class="dropdown-item" href="#">'+gifRetriever.toTitleCase(gifRetriever.topicCategories[i])+'</a>');
 		}
 
 		//chooses random default category
@@ -93,6 +74,7 @@ var gifRetriever = {
 		//Clears area for buttons
 
 		//Creates buttons for category chosen
+
 
 		//brings up category
 
@@ -103,7 +85,7 @@ var gifRetriever = {
 gifRetriever.startUp();
 
 
-$("body").on("click", "#categories ul li", function(){
+$("body").on("click", "#categories a", function(){
     //if I want to add the category chosen as the dropdown text
 	// $("#categories .btn:first-child").text($(this).text());
  //    $("#categories .btn:first-child").val($(this).text());
@@ -122,6 +104,7 @@ $("body").on("click", "#addTopic", function() {
 	}
 	$("#newTopic").val("");
 });
+
 
 
 $("body").on("click", "#clearTopics", function() {

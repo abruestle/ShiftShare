@@ -6,132 +6,132 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>ShiftShare</title>
 		<link href="assets/css/reset.css" rel="stylesheet">
-		<link href="assets/css/sticky-footer.css" rel="stylesheet">
 		<link href="assets/css/style.css" rel="stylesheet">
+		<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+
 		<script type="text/javascript" src="assets/js/libs/libgif.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 	</head>
 	<body class = "bodyCollapsed">
 		<div class="container-fluid">
+			<nav>
+				<div class="nav nav-tabs" id="nav-tab" role="tablist">
+					<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">My Gifs</a>
+					<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Webcam</a>
+					<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Share!</a>
+				</div>
+			</nav>
 			<div class="row">
 				<div class="col">
 					<div class="page-header">
 						<h1>
 						ShiftShare
 						</h1>
-						<p>
-							Choose topics from categories in the dropdown, or make your own up!
-						</p>
 					</div>
 				</div>
 			</div>
-
-			<div class="row">
-				<div class="col">
-					<div class="btn-group" id="categories">
-						
-						<button class="btn btn-default">
-						Categories
-						</button>
-						<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-						<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="#">Categories</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-8">
-					<form class="form-horizontal" role="form">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="New Topic" aria-describedby="basic-addon1" id="newTopic">
-							<span class="input-group-addon" id="addTopic">Add!</span>
-							<span class="input-group-addon" id="clearTopics">Clear topics</span>
-							<span class="input-group-addon" id="clearGifs">Clear Gifs</span>
-						</div>
-					</form>
-				</div>
-			</div>
-			<br>
-
-			<div class="row" id="accordion" role="tablist" aria-multiselectable="true">
-				<div class="col">
-					<div class="card">
-						<div class="card-header" role="tab" id="headingCategoryTopics">
-							<h5 class="mb-0">
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapseCategoryTopics" aria-expanded="false" aria-controls="collapseCategoryTopics">
-								Group Name
-							</a>
-							</h5>
-						</div>
-						<div id="collapseCategoryTopics" class="collapse" role="tabpanel" aria-labelledby="headingCategoryTopics">
-							<div class="card-block">
-								Button Button Button
+			<div class="tab-content" id="nav-tabContent">
+				<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+					<p>
+						Choose topics from categories in the dropdown, or make your own up!
+					</p>
+					<div class="row">
+						<div class="col">
+							<div class="dropdown">
+								<button class="btn btn-default dropdown-toggle" type="button" id="categoriesButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Categories
+								</button>
+								<div class="dropdown-menu" aria-labelledby="categoriesButton" id="categories">
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<div class="card-header" role="tab" id="headingMyTopics">
-							<h5 class="mb-0">
-							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseMyTopics" aria-expanded="false" aria-controls="collapseMyTopics">
-								My Topics
-							</a>
-							</h5>
-						</div>
-						<div id="collapseMyTopics" class="collapse" role="tabpanel" aria-labelledby="headingMyTopics">
-							<div class="card-block">
-								Button
-							</div>
+						<div class="col-sm-8">
+							<form class="form-horizontal" role="form">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="New Topic" aria-describedby="basic-addon1" id="newTopic">
+									<span class="input-group-addon" id="addTopic">Add!</span>
+									<span class="input-group-addon" id="clearTopics">Clear topics</span>
+									<span class="input-group-addon" id="clearGifs">Clear Gifs</span>
+								</div>
+							</form>
 						</div>
 					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<div class="card-header" role="tab" id="headingGifEffects">
-							<h5 class="mb-0">
-							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseGifEffects" aria-expanded="false" aria-controls="collapseTwo">
-								Gif Effects
-							</a>
-							</h5>
-						</div>
-						<div id="collapseGifEffects" class="collapse" role="tabpanel" aria-labelledby="headingGifEffects">
-							
-							<div class="card-block">
-								Button Button Button
-							</div>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-			<div class="row">
-				<div class="col">
-					<div class="card-columns" id="images">
-						<div class="card">
-							<img class="card-img-top img-fluid" src="http://lorempixel.com/400/200/cats/" alt="Name of Gif and effects?">
-							<div class="card-block">
-								<!-- <h4 class="card-title">Card title that wraps to a new line</h4> -->
-								<div class="row justify-content-center">
-									<div class="col-md-2">
-										<button type="button" class="btn btn-primary btn-sm">Share</button>
+					<br>
+					<div class="row" id="accordion" role="tablist" aria-multiselectable="true">
+						<div class="col">
+							<div class="card">
+								<div class="card-header" role="tab" id="headingCategoryTopics" data-toggle="collapse" data-parent="#accordion" href="#collapseCategoryTopics" aria-expanded="false" aria-controls="collapseCategoryTopics">
+									<h5 class="mb-0">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseCategoryTopics" aria-expanded="false" aria-controls="collapseCategoryTopics">
+										Group Name
+									</a>
+									</h5>
+								</div>
+								<div id="collapseCategoryTopics" class="collapse" role="tabpanel" aria-labelledby="headingCategoryTopics">
+									<div class="card-block">
 									</div>
-									<div class="col-md-1"></div>
-									<div class="col-md-9">
-										<div class="progress">
-											<div class="progress-bar" style="width:70%"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card">
+								<div class="card-header" role="tab" id="headingMyTopics" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseMyTopics" aria-expanded="false" aria-controls="collapseMyTopics">
+									<h5 class="mb-0">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseMyTopics" aria-expanded="false" aria-controls="collapseMyTopics">
+										My Topics
+									</a>
+									</h5>
+								</div>
+								<div id="collapseMyTopics" class="collapse" role="tabpanel" aria-labelledby="headingMyTopics">
+									<div class="card-block">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card">
+								<div class="card-header" role="tab" id="headingGifEffects" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseGifEffects" aria-expanded="false" aria-controls="collapseGifEffects">
+									<h5 class="mb-0">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseGifEffects" aria-expanded="false" aria-controls="collapseGifEffects">
+										Gif Effects
+									</a>
+									</h5>
+								</div>
+								<div id="collapseGifEffects" class="collapse" role="tabpanel" aria-labelledby="headingGifEffects">
+									<div class="card-block">
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<div class="row">
+						<div class="col">
+							<div class="card-columns" id="images">
+								
+								<div class="card">
+									<img class="card-img-top img-fluid" src="http://lorempixel.com/400/200/cats/" alt="Name of Gif and effects?">
+									<div class="card-block">
+										<!-- <h4 class="card-title">Card title that wraps to a new line</h4> -->
+										<div class="row justify-content-center">
+											<div class="col-md-2">
+												<button type="button" class="btn btn-primary btn-sm">Share</button>
+											</div>
+											<div class="col-md-1"></div>
+											<div class="col-md-9">
+												<div class="progress">
+													<div class="progress-bar" style="width:70%"></div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-								
-								
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+				<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
 			</div>
 		</div>
 		<footer class="footer footer2 footerCollapsed">
@@ -163,7 +163,7 @@
 		</footer>
 		
 		
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -171,13 +171,13 @@
     <script src="assets/js/gifRetriever.js"></script>
     <script src="assets/js/script_chat.js"></script>
     <script src="assets/js/libs/utilities/storage.js"></script>
-<!--     <script>
-			var src = "https://media.giphy.com/media/sHV6YMsVFTQD6/giphy.gif";
-			var rub = new SuperGif({ gif: document.getElementById("testGif") } );
-			rub.load();
-			console.log(rub);
-			console.log(rub.get_length());
-    </script>
- -->    
+		<!--     <script>
+					var src = "https://media.giphy.com/media/sHV6YMsVFTQD6/giphy.gif";
+					var rub = new SuperGif({ gif: document.getElementById("testGif") } );
+					rub.load();
+					console.log(rub);
+					console.log(rub.get_length());
+		</script>
+		-->
 	</body>
 </html>
