@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Media Device Access</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    video, img {
+      max-width:100%;
+    }
+  </style>
+  <script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
+			      <script src="facePlusPlusApi.js"></script>
+        <script src="fxHelper.js"></script>
+ 
+</head>
+<body>
+
+<video autoplay></video>
+<br/>
+<button id="snapshot">Take Snapshot</button>
+<br/>
+        <form id="face-upload" action="#" method="multipart-formdata">
+        	            <input type="file" id="face" />
+
+             <input type="submit" />
+        </form>
+        <br/>
+
+        <canvas class="face" id="face_1">
+
+        </canvas>
+        <script>
+            $(document).ready(function () {
+                $("#face-upload").submit(function (event) {
+                    //stop submit the form, we will post it manually.
+                    event.preventDefault();
+                    var options = {
+                        boundingbox: false,
+                        highlight: true
+                    };
+                    var face = new facePlusPlusApi();
+                    var token = face.detectFaceFromForm("face");
+                    var coordinates = face.analyzeFace(token);
+                    face.setCanvasDimensionsFromFileInput("face", "face_1");
+                    face.drawCanvasImageFromFileUpload("face", "face_1", coordinates, options);
+                    setTimeout(function () {
+                        var fx = new fxHelper();
+                        fx.applyFilter("face_1", coordinates, "top-hat");
+                        fx.applyFilter("face_1", coordinates, "eye-lasers");
+                    }, 500);
+
+                });
+            });
+        </script>
+
+<script>
+  (function() {
+    'use strict';
+    var video = document.querySelector('video')
+      , canvas;
+
+    /**
+     *  generates a still frame image from the stream in the <video>
+     *  appends the image to the <body>
+     */
+    function takeSnapshot() {
+      var img = document.querySelector('img') || document.createElement('img');
+      var context;
+      var width = video.offsetWidth
+        , height = video.offsetHeight;
+
+      canvas = canvas || document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+
+      context = canvas.getContext('2d');
+      context.drawImage(video, 0, 0, width, height);
+
+      img.src = canvas.toDataURL('image/png');
+      return img;
+    }
+
+   $("#snapshot").click(function() {
+   		var img = takeSnapshot();
+   		var blob = dataURItoBlob(img.src);
+   	 	      var options = {
+                        boundingbox: false,
+                        highlight: false
+                    };
+                    var face = new facePlusPlusApi();
+                    var token = face.detectFaceFromBlob(blob);
+                    var coordinates = face.analyzeFace(token);
+                    face.setCanvasDimensionsFromBlob(blob, "face_1");
+                    face.drawCanvasImageFromBlob(blob, "face_1", coordinates, options);
+                    setTimeout(function () {
+                        var fx = new fxHelper();
+                        fx.applyFilter("face_1", coordinates, "cat");
+                     }, 500);
+   });
+
+   function dataURItoBlob(dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+        byteString = atob(dataURI.split(',')[1]);
+    else
+        byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], {type:mimeString});
+}
+
+  
+    // use MediaDevices API
+    // docs: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+    if (navigator.mediaDevices) {
+      // access the web cam
+      navigator.mediaDevices.getUserMedia({video: true})
+      // permission granted:
+        .then(function(stream) {
+          video.src = window.URL.createObjectURL(stream);
+          video.addEventListener('click', takeSnapshot);
+        })
+        // permission denied:
+        .catch(function(error) {
+          document.body.textContent = 'Could not access the camera. Error: ' + error.name;
+        });
+    }
+  })();
+
+</script>
+</body>
+</html>
