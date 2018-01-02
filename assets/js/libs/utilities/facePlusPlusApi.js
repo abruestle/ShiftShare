@@ -1,5 +1,4 @@
 function facePlusPlusApi() {
-
     this.api_key = "4t2b5e4MCSdAU0ij3IYu6fAM_T50sc5k";
     this.api_secret = "_T3VEWO8jHrUbsRYddGye4Ow2QkY_vzJ";
     this.detect_url = 'https://api-us.faceplusplus.com/facepp/v3/detect';
