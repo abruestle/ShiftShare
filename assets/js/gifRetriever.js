@@ -18,7 +18,7 @@ var gifRetriever = {
 	},
 	createGif: function(topic) {
 		// Creates a gif based on which button was pressed
-    	queryURL = "https://api.giphy.com/v1/gifs/search?q="+topic+"&api_key=dc6zaTOxFJmzC";
+    	queryURL = "https://api.giphy.com/v1/gifs/random?tag="+topic+"&api_key=dc6zaTOxFJmzC";
 
     	//random does only 1 gif at a time, so ajax needs to be inside of the for loop if doing random - unfotunately, that does not give rating. A next step for this would be reverse searching to find the rating based on the gif, so both could be done.
 
@@ -26,10 +26,9 @@ var gifRetriever = {
 	      url: queryURL,
 	      method: 'GET'
 	    }).done(function(response) {
+	    	var image_url = response.data.image_url.replace("/giphy.gif", "");
 
-	      for (var i = 0; i < 10; i++) {
-	      	$("#images").prepend('<div class="card"><img class="card-img-top img-fluid" src="'+response.data[i].images.fixed_height_still.url+'" data-still = "'+response.data[i].images.fixed_height_still.url+'" data-animate = "'+response.data[i].images.fixed_height.url+'" data-state = "still" class="gif"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm">Share</button></div><div class="col-md-1"></div><div class="col-md-9"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div>');
-	      }
+	    	$("#images").prepend('<div class="card"><img class="card-img-top img-fluid" src="'+ image_url +'/200w_s.gif" data-still = "'+ image_url +'/200w_s.gif" data-animate = "'+ image_url +'/200w_d.gif" data-state = "still" class="gif"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm">Share</button></div><div class="col-md-1"></div><div class="col-md-9"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div>');
 	    });
 
 	},
