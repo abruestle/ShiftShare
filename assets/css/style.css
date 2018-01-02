@@ -26,11 +26,13 @@ body {
 
 .progress {
 	margin-top:5px;
-	
+    margin-left: 15px;
+    height: auto !important;
+    border-radius: 20px !important;
 }
 
 .progress-bar {
-	height:31px;
+	height: 31px;
 }
 
 .btn-sm {
