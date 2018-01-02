@@ -25,6 +25,37 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="btn-group" id="categories">
+						
+						<button class="btn btn-default">
+						Categories
+						</button>
+						<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+						<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="#">Categories</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-8">
+					<form class="form-horizontal" role="form">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="New Topic" aria-describedby="basic-addon1" id="newTopic">
+							<span class="input-group-addon" id="addTopic">Add!</span>
+							<span class="input-group-addon" id="clearTopics">Clear topics</span>
+							<span class="input-group-addon" id="clearGifs">Clear Gifs</span>
+						</div>
+					</form>
+				</div>
+			</div>
+			<br>
+
 			<div class="row" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="col">
 					<div class="card">
@@ -53,7 +84,7 @@
 						</div>
 						<div id="collapseMyTopics" class="collapse" role="tabpanel" aria-labelledby="headingMyTopics">
 							<div class="card-block">
-								<img id="testGif" src="https://media.giphy.com/media/sHV6YMsVFTQD6/giphy.gif">
+								Button
 							</div>
 						</div>
 					</div>
@@ -137,6 +168,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 		<!-- <script src="assets/js/scripts.js"></script> -->
+    <script src="assets/js/gifRetriever.js"></script>
     <script src="assets/js/script_chat.js"></script>
 <!--     <script>
 			var src = "https://media.giphy.com/media/sHV6YMsVFTQD6/giphy.gif";
