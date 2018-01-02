@@ -26,41 +26,23 @@ var gifRetriever = {
 	      url: queryURL,
 	      method: 'GET'
 	    }).done(function(response) {
-	      // console.log(response);
-
-	      //3. When the user clicks on a button, the page should grab 10 static, non-animated gif images from the GIPHY API and place them on the page.
-
-	      	// console.log(response.data);
 
 	      for (var i = 0; i < 10; i++) {
-	      	$("#images").prepend('<div class="thumbnail grid-item"><img src="'+response.data[i].images.fixed_height_still.url+'" data-still = "'+response.data[i].images.fixed_height_still.url+'" data-animate = "'+response.data[i].images.fixed_height.url+'" data-state = "still" class="gif caption"><p>Rated '+response.data[i].rating+'</p></div></div>');
+	      	$("#images").prepend('<div class="card"><img class="card-img-top img-fluid" src="'+response.data[i].images.fixed_height_still.url+'" data-still = "'+response.data[i].images.fixed_height_still.url+'" data-animate = "'+response.data[i].images.fixed_height.url+'" data-state = "still" class="gif"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm">Share</button></div><div class="col-md-1"></div><div class="col-md-9"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div>');
 	      }
-	      //<div class="col-md-2">
-	      // response.data[i].rating
-	      //     5. Under every gif, display its rating (PG, G, so on).
-	      // response.data[i].rating
-	      // * This data is provided by the GIPHY API.
-	      // * Only once you get images displaying with button presses should you move on to the next step.
-	      //Fixed still: fixed_height_still
-	      //fixed_height
 	    });
 
-	 //    $('.grid').masonry({
-		//   // options
-		//   itemSelector: '.grid-item',
-		//   columnWidth: 200
-		// });
 	},
 	getCategory: function() {
 		//
 		$("#categoryTopics").empty();
 		for (var i = 0; i < gifRetriever.topics[gifRetriever.topicCategories.indexOf((gifRetriever.curCategory).toLowerCase())].length; i++) {
-			$("#categoryTopics").append(gifRetriever.buttonCreator(gifRetriever.topics[gifRetriever.topicCategories.indexOf((gifRetriever.curCategory).toLowerCase())][i], "categoryTopics"));
+			$("#categoryTopics").append(gifRetriever.buttonCreator(gifRetriever.topics[gifRetriever.topicCategories.indexOf((gifRetriever.curCategory).toLowerCase())][i], "CategoryTopics"));
 		}
-		$("#categoryName").text(gifRetriever.toTitleCase(gifRetriever.curCategory));
-
-		$("#panel-element-850776").collapse("show");
-		$("#panel-element-265940").collapse("hide");
+		$("#headingCategoryTopics").text(gifRetriever.toTitleCase(gifRetriever.curCategory));
+		$("#collapseMyTopics").collapse("hide");
+		$("#collapseCategoryTopics").collapse("show");
+		$("#collapseGifEffects").collapse("hide");
 	},
 	animate: function(image) {
 		//Animates or stills gif
@@ -104,7 +86,7 @@ var gifRetriever = {
 gifRetriever.startUp();
 
 
-$("body").on("click", "#categories ul li", function(){
+$("body").on("click", "#categories a", function(){
     //if I want to add the category chosen as the dropdown text
 	// $("#categories .btn:first-child").text($(this).text());
  //    $("#categories .btn:first-child").val($(this).text());
