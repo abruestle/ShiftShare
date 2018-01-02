@@ -12,7 +12,7 @@ var gifRetriever = {
 		//Topics should have uniform capitalization - all lower or proper.
 		//does not allow spaces
 		if((topic).trim() != "") {
-			$("#"+area).append('<button type = "button" class="btn btn-default topic">'+gifRetriever.toTitleCase(topic).trim()+'</button>');
+			$("#collapse"+area + " .card-block").append('<button type = "button" class="btn btn-default topic">'+gifRetriever.toTitleCase(topic).trim()+'</button>');
 		}
 		
 	},
@@ -115,14 +115,13 @@ $("body").on("click", "#categories ul li", function(){
 $("body").on("click", "#addTopic", function() {
 	event.preventDefault();
 	if(($("#newTopic").val()).trim() != "") {
-        gifRetriever.buttonCreator($("#newTopic").val(), "myTopics");
+        gifRetriever.buttonCreator($("#newTopic").val(), "MyTopics");
 		$("#collapseMyTopics").collapse("show");
 		$("#collapseCategoryTopics").collapse("hide");
 		$("#collapseGifEffects").collapse("hide");
 	}
 	$("#newTopic").val("");
 });
-
 
 
 $("body").on("click", "#clearTopics", function() {
@@ -156,7 +155,7 @@ $(document).keypress(function(e) {
     if(e.which == 13) {
     	event.preventDefault();
 	    if(($("#newTopic").val()).trim() != "") {
-	        gifRetriever.buttonCreator($("#newTopic").val(), "myTopics");
+	        gifRetriever.buttonCreator($("#newTopic").val(), "MyTopics");
 			$("#collapseMyTopics").collapse("show");
 			$("#collapseCategoryTopics").collapse("hide");
 			$("#collapseGifEffects").collapse("hide");
