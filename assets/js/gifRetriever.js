@@ -116,8 +116,9 @@ $("body").on("click", "#addTopic", function() {
 	event.preventDefault();
 	if(($("#newTopic").val()).trim() != "") {
         gifRetriever.buttonCreator($("#newTopic").val(), "myTopics");
-		$("#panel-element-265940").collapse("show");
-		$("#panel-element-850776").collapse("hide");
+		$("#collapseMyTopics").collapse("show");
+		$("#collapseCategoryTopics").collapse("hide");
+		$("#collapseGifEffects").collapse("hide");
 	}
 	$("#newTopic").val("");
 });
@@ -156,8 +157,9 @@ $(document).keypress(function(e) {
     	event.preventDefault();
 	    if(($("#newTopic").val()).trim() != "") {
 	        gifRetriever.buttonCreator($("#newTopic").val(), "myTopics");
-			$("#panel-element-265940").collapse("show");
-			$("#panel-element-850776").collapse("hide");
+			$("#collapseMyTopics").collapse("show");
+			$("#collapseCategoryTopics").collapse("hide");
+			$("#collapseGifEffects").collapse("hide");
 		}
 		$("#newTopic").val("");
     }
