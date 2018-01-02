@@ -337,6 +337,15 @@ function fxHelper() {
 
     }
 
+    this.generateFilterButtons = function() {
+        var filter = this.getFilters();
+        for (var key in filters) {
+            var filter = filters[key];
+            var filtername = filter.replace("-", " ");
+            $("#collapseGifEffects .card-block").append('<button type = "button" value="' + filter + '" class="btn btn-default topic">'+gifRetriever.toTitleCase(filtername).trim()+'</button>');
+        }
+    }
+
     //    Sub Filters 
 
     this.bunnyNose = function (canvas_id, coordinates) {
