@@ -53,6 +53,10 @@ body {
 	padding: 5px;
 }
 
+.card-header {
+	border-bottom-width: 0px !important;
+}
+
 /*overflow: scroll;*/
 #chat {
 	overflow-y: scroll;

@@ -82,9 +82,9 @@ var gifRetriever = {
 	startUp: function() {
 		//starts program up
 		//Creates dropdown list of categories
-		$("#categories ul").empty();
+		$("#categories").empty();
 		for (var i = 0; i < gifRetriever.topicCategories.length; i++) {
-			$("#categories ul").append('<li><a href="#">'+gifRetriever.toTitleCase(gifRetriever.topicCategories[i])+'</a></li>');
+			$("#categories").append('<a class="dropdown-item" href="#">'+gifRetriever.toTitleCase(gifRetriever.topicCategories[i])+'</a>');
 		}
 
 		//chooses random default category
@@ -93,6 +93,7 @@ var gifRetriever = {
 		//Clears area for buttons
 
 		//Creates buttons for category chosen
+
 
 		//brings up category
 
