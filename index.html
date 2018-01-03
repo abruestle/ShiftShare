@@ -5,28 +5,38 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>ShiftShare</title>
+
+		<!-- reset sheet -->
 		<link href="assets/css/reset.css" rel="stylesheet">
+
+		<!-- bootstrap, jquery, ajax -->
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-		<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+
+		<!-- giflib -->
 		<script type="text/javascript" src="assets/js/libs/libgif.js"></script>
+		<!-- firebase -->
 		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+		<!-- masonry -->
 		<script src="https://unpkg.com/masonry-layout@4.2.1/dist/masonry.pkgd.min.js"></script>
 		<script src="https://unpkg.com/imagesloaded@4.1.4/imagesloaded.pkgd.min.js"></script>
+		<!-- our css and favicon -->
 		<link href="assets/css/style.css" rel="stylesheet">
-		
+		<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
 	</head>
 	<body class = "bodyCollapsed">
 		<div class="container-fluid">
 			<nav>
+				<!-- nav heading -->
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
 					<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">My Gifs</a>
 					<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Webcam</a>
 					<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Share!</a>
 				</div>
 			</nav>
+			<!-- heading (not changed for different areas) -->
 			<div class="row">
 				<div class="col">
 					<div class="page-header">
@@ -37,6 +47,7 @@
 				</div>
 			</div>
 			<div class="tab-content" id="nav-tabContent">
+				<!-- My Gifs -->
 				<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 					<p>
 						Choose topics from categories in the dropdown, or make your own up!
@@ -144,12 +155,42 @@
 					</div>
 				</div>
 				<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-				<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+				<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+					<p>
+						Here are shared gifs!
+					</p>
+					<div class="row">
+						<div class="col">
+							<div class="gallery-wrapper clearfix" id="sharedImages">
+								<div class="col-md-4 grid-sizer"></div>
+								<div class="col-md-4 grid-item">
+									<div class="card"><img class="card-img-top img-fluid" src="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_s.gif" data-still="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_s.gif" data-animate="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_d.gif" data-state="still" id="https://media3.giphy.com/media/Vin5Om7uTdqiQ"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm show" value="https://media3.giphy.com/media/Vin5Om7uTdqiQ">Show!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm save" value="https://media3.giphy.com/media/Vin5Om7uTdqiQ">Save!</button></div><div class="col text-right"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div>
+								</div>
+								<div class="col-md-4 grid-item">
+									<img class="img-fluid" src="http://via.placeholder.com/1024x600">
+								</div>
+								<div class="col-md-4 grid-item">
+									<img class="img-fluid" src="http://via.placeholder.com/1024x300">
+								</div>
+								<div class="col-md-4 grid-item">
+									<img class="img-fluid" src="http://via.placeholder.com/1024x600">
+								</div>
+								<div class="col-md-4 grid-item">
+									<img class="img-fluid" src="http://via.placeholder.com/800x900">
+								</div>
+								<div class="col-md-4 grid-item">
+									<img class="img-fluid" src="http://via.placeholder.com/1024x600">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+		<div id="chatFooterArea">
 		<footer class="footer footer2 footerCollapsed">
 			<div class="container">
-				<div class="tab-pane collapse" id="chat" type="text">
+				<div class="tab-pane" id="chat" type="text">
 					<p class="chatName">Chat Name</p>
 					<p>Talk talk talk</p>
 					<p class="chatName">Chat Name</p>
@@ -174,12 +215,13 @@
 				</div>
 			</div>
 		</footer>
-		
+		</div>
 		
 		
 		<!-- <script src="assets/js/scripts.js"></script> -->
 		<script src="assets/js/gifRetriever.js"></script>
 		<script src="assets/js/script_chat.js"></script>
+		<script src="assets/js/shared.js"></script>
 		<!--     <script>
 					var src = "https://media.giphy.com/media/sHV6YMsVFTQD6/giphy.gif";
 					var rub = new SuperGif({ gif: document.getElementById("testGif") } );
