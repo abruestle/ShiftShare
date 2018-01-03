@@ -13,7 +13,8 @@
 			  src="https://code.jquery.com/jquery-3.2.1.min.js"
 			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 			  crossorigin="anonymous"></script>
-	    <script src="facePlusPlusApi.js"></script>
+
+ 	    <script src="facePlusPlusApi.js"></script>
         <script src="fxHelper.js"></script>
         <script src="libgif2.js"></script>
  
@@ -25,7 +26,9 @@
 <img id="testgif" crossOrigin="anonymous" src="https://media.giphy.com/media/xT0xezwKyz4VXZlBGU/giphy.gif"/>
  
 <br/><button id="split">Split Gif</button>
+
 <video autoplay></video>
+
 <br/>
 <button id="snapshot">Take Snapshot</button>
 <br/>
@@ -42,6 +45,7 @@
         <script>
 		
 		  function dataURItoBlob(dataURI) {
+
     // convert base64/URLEncoded data component to raw binary data held in a string
     var byteString;
     if (dataURI.split(',')[0].indexOf('base64') >= 0)
@@ -60,7 +64,7 @@
 
     return new Blob([ia], {type:mimeString});
 }
-	
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -124,10 +128,5 @@ function sleep(ms) {
 		
 
         </script>
-
-<script>
-
-
-</script>
 </body>
 </html>
