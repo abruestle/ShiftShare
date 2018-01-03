@@ -5,15 +5,18 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>ShiftShare</title>
+		<link href="assets/css/reset.css" rel="stylesheet">
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-		<link href="assets/css/reset.css" rel="stylesheet">
-		<link href="assets/css/style.css" rel="stylesheet">
 		<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
 		<script type="text/javascript" src="assets/js/libs/libgif.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+		<script src="https://unpkg.com/masonry-layout@4.2.1/dist/masonry.pkgd.min.js"></script>
+		<script src="https://unpkg.com/imagesloaded@4.1.4/imagesloaded.pkgd.min.js"></script>
+		<link href="assets/css/style.css" rel="stylesheet">
+		
 	</head>
 	<body class = "bodyCollapsed">
 		<div class="container-fluid">
@@ -110,9 +113,32 @@
 					</div>
 					<div class="row">
 						<div class="col">
-							<div class="card-columns" id="images">
-								<div class="card"><img class="card-img-top img-fluid" src="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_s.gif" data-still="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_s.gif" data-animate="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_d.gif" data-state="still" id="https://media3.giphy.com/media/Vin5Om7uTdqiQ"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm shift" value="https://media3.giphy.com/media/Vin5Om7uTdqiQ">Shift!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm share" value="https://media3.giphy.com/media/Vin5Om7uTdqiQ">Share!</button></div><div class="col text-right"><span class="badge badge-primary" disabled="">No faces found</span></div></div></div></div>
-								<div class="card"><img class="card-img-top img-fluid" src="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_s.gif" data-still="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_s.gif" data-animate="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_d.gif" data-state="still" id="https://media3.giphy.com/media/Vin5Om7uTdqiQ"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm shift" value="https://media3.giphy.com/media/Vin5Om7uTdqiQ">Shift!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm share" value="https://media3.giphy.com/media/Vin5Om7uTdqiQ">Share!</button></div><div class="col text-right"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div>
+							<div class="gallery-wrapper clearfix" id="images">
+								<div class="col-md-4 grid-sizer"></div>
+								<div class="col-md-4 grid-item">
+									<div class="card"><img class="card-img-top img-fluid" src="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_s.gif" data-still="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_s.gif" data-animate="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_d.gif" data-state="still" id="https://media3.giphy.com/media/Vin5Om7uTdqiQ"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm shift" value="https://media3.giphy.com/media/Vin5Om7uTdqiQ">Shift!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm share" value="https://media3.giphy.com/media/Vin5Om7uTdqiQ">Share!</button></div><div class="col text-right"><span class="badge badge-primary" disabled="">No faces found</span></div></div></div></div>
+								</div>
+								<div class="col-md-4 grid-item">
+									<div class="card"><img class="card-img-top img-fluid" src="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_s.gif" data-still="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_s.gif" data-animate="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_d.gif" data-state="still" id="https://media3.giphy.com/media/Vin5Om7uTdqiQ"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm shift" value="https://media3.giphy.com/media/Vin5Om7uTdqiQ">Shift!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm share" value="https://media3.giphy.com/media/Vin5Om7uTdqiQ">Share!</button></div><div class="col text-right"><span class="badge badge-primary" disabled="">No faces found</span></div></div></div></div>
+								</div>
+								<div class="col-md-4 grid-item">
+									<div class="card"><img class="card-img-top img-fluid" src="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_s.gif" data-still="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_s.gif" data-animate="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_d.gif" data-state="still" id="https://media3.giphy.com/media/Vin5Om7uTdqiQ"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm shift" value="https://media3.giphy.com/media/Vin5Om7uTdqiQ">Shift!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm share" value="https://media3.giphy.com/media/Vin5Om7uTdqiQ">Share!</button></div><div class="col text-right"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div>
+								</div>
+								<div class="col-md-4 grid-item">
+									<img class="img-fluid" src="http://via.placeholder.com/1024x600">
+								</div>
+								<div class="col-md-4 grid-item">
+									<img class="img-fluid" src="http://via.placeholder.com/1024x300">
+								</div>
+								<div class="col-md-4 grid-item">
+									<img class="img-fluid" src="http://via.placeholder.com/1024x600">
+								</div>
+								<div class="col-md-4 grid-item">
+									<img class="img-fluid" src="http://via.placeholder.com/800x900">
+								</div>
+								<div class="col-md-4 grid-item">
+									<img class="img-fluid" src="http://via.placeholder.com/1024x600">
+								</div>
 							</div>
 						</div>
 					</div>

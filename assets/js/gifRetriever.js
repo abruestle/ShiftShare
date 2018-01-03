@@ -27,8 +27,13 @@ var gifRetriever = {
 	      method: 'GET'
 	    }).done(function(response) {
 	    	var image_url = response.data.image_url.replace("/giphy.gif", "");
+	    	var html = $('<div class="col-md-4 grid-item"><div class="card"><img class="card-img-top img-fluid" src="'+ image_url +'/200w_s.gif" data-still = "'+ image_url +'/200w_s.gif" data-animate = "'+ image_url +'/200w_d.gif" data-state = "still" class="gif" id="'+ image_url +'"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm shift" value="'+ image_url +'">Shift!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm share" value="'+ image_url +'">Share!</button></div><div class="col text-right" id="progressArea"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div></div>');
 
-	    	$("#images").prepend('<div class="card"><img class="card-img-top img-fluid" src="'+ image_url +'/200w_s.gif" data-still = "'+ image_url +'/200w_s.gif" data-animate = "'+ image_url +'/200w_d.gif" data-state = "still" class="gif" id="'+ image_url +'"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm shift" value="'+ image_url +'">Shift!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm share" value="'+ image_url +'">Share!</button></div><div class="col text-right" id="progressArea"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div>');
+	    	$("#images .grid-sizer").after(html);
+	    	$grid.masonry( 'prepended', $(html) );
+	    	setTimeout(function(){
+			  $grid.masonry();
+			}, 200);
 	    });
 
 	},
@@ -162,3 +167,15 @@ $(document).keypress(function(e) {
 // $(function() {
 //     $("form").submit(function() { return false; });
 // });
+
+// masonry 
+var $grid = $('#images').masonry({
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true,
+    transitionDuration: 0
+  });
+
+  $grid.imagesLoaded().progress( function() {
+    $grid.masonry();
+  });
