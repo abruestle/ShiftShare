@@ -89,3 +89,9 @@ body {
 /*.bodyCollapsed {
   /* CSS for the collapsed footer! Yay!*/
 /*}*/
+
+
+.badge {
+	margin: 10px 0;
+  font-size: 14px;
+}
