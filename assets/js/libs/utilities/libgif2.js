@@ -1,54 +1,52 @@
-/* Added Code at 76 for canvas to png conversion and at 926 to
-    return an array of the png src tags for use later*/
-
+ 
 /*
-  SuperGif
-  Example usage:
-    <img src="./example1_preview.gif" rel:animated_src="./example1.gif" width="360" height="360" rel:auto_play="1" />
-    <script type="text/javascript">
-      $$('img').each(function (img_tag) {
-        if (/.*\.gif/.test(img_tag.src)) {
-          var rub = new SuperGif({ gif: img_tag } );
-          rub.load();
-        }
-      });
-    </script>
-  Image tag attributes:
-    rel:animated_src -  If this url is specified, it's loaded into the player instead of src.
-              This allows a preview frame to be shown until animated gif data is streamed into the canvas
-    rel:auto_play -   Defaults to 1 if not specified. If set to zero, a call to the play() method is needed
-  Constructor options args
-    gif         Required. The DOM element of an img tag.
-    loop_mode     Optional. Setting this to false will force disable looping of the gif.
-    auto_play       Optional. Same as the rel:auto_play attribute above, this arg overrides the img tag info.
-    max_width     Optional. Scale images over max_width down to max_width. Helpful with mobile.
-    on_end        Optional. Add a callback for when the gif reaches the end of a single loop (one iteration). The first argument passed will be the gif HTMLElement.
-    loop_delay      Optional. The amount of time to pause (in ms) after each single loop (iteration).
-    draw_while_loading  Optional. Determines whether the gif will be drawn to the canvas whilst it is loaded.
-    show_progress_bar Optional. Only applies when draw_while_loading is set to true.
-  Instance methods
-    // loading
-    load( callback )    Loads the gif specified by the src or rel:animated_src sttributie of the img tag into a canvas element and then calls callback if one is passed
-    load_url( src, callback ) Loads the gif file specified in the src argument into a canvas element and then calls callback if one is passed
-    // play controls
-    play -        Start playing the gif
-    pause -       Stop playing the gif
-    move_to(i) -    Move to frame i of the gif
-    move_relative(i) -  Move i frames ahead (or behind if i < 0)
-    // getters
-    get_canvas      The canvas element that the gif is playing in. Handy for assigning event handlers to.
-    get_playing     Whether or not the gif is currently playing
-    get_loading     Whether or not the gif has finished loading/parsing
-    get_auto_play   Whether or not the gif is set to play automatically
-    get_length      The number of frames in the gif
-    get_current_frame The index of the currently displayed frame of the gif
-    For additional customization (viewport inside iframe) these params may be passed:
-    c_w, c_h - width and height of canvas
-    vp_t, vp_l, vp_ w, vp_h - top, left, width and height of the viewport
-    A bonus: few articles to understand what is going on
-      http://enthusiasms.org/post/16976438906
-      http://www.matthewflickinger.com/lab/whatsinagif/bits_and_bytes.asp
-      http://humpy77.deviantart.com/journal/Frame-Delay-Times-for-Animated-GIFs-214150546
+	SuperGif
+	Example usage:
+		<img src="./example1_preview.gif" rel:animated_src="./example1.gif" width="360" height="360" rel:auto_play="1" />
+		<script type="text/javascript">
+			$$('img').each(function (img_tag) {
+				if (/.*\.gif/.test(img_tag.src)) {
+					var rub = new SuperGif({ gif: img_tag } );
+					rub.load();
+				}
+			});
+		</script>
+	Image tag attributes:
+		rel:animated_src -	If this url is specified, it's loaded into the player instead of src.
+							This allows a preview frame to be shown until animated gif data is streamed into the canvas
+		rel:auto_play -		Defaults to 1 if not specified. If set to zero, a call to the play() method is needed
+	Constructor options args
+		gif 				Required. The DOM element of an img tag.
+		loop_mode			Optional. Setting this to false will force disable looping of the gif.
+		auto_play 			Optional. Same as the rel:auto_play attribute above, this arg overrides the img tag info.
+		max_width			Optional. Scale images over max_width down to max_width. Helpful with mobile.
+ 		on_end				Optional. Add a callback for when the gif reaches the end of a single loop (one iteration). The first argument passed will be the gif HTMLElement.
+		loop_delay			Optional. The amount of time to pause (in ms) after each single loop (iteration).
+		draw_while_loading	Optional. Determines whether the gif will be drawn to the canvas whilst it is loaded.
+		show_progress_bar	Optional. Only applies when draw_while_loading is set to true.
+	Instance methods
+		// loading
+		load( callback )		Loads the gif specified by the src or rel:animated_src sttributie of the img tag into a canvas element and then calls callback if one is passed
+		load_url( src, callback )	Loads the gif file specified in the src argument into a canvas element and then calls callback if one is passed
+		// play controls
+		play -				Start playing the gif
+		pause -				Stop playing the gif
+		move_to(i) -		Move to frame i of the gif
+		move_relative(i) -	Move i frames ahead (or behind if i < 0)
+		// getters
+		get_canvas			The canvas element that the gif is playing in. Handy for assigning event handlers to.
+		get_playing			Whether or not the gif is currently playing
+		get_loading			Whether or not the gif has finished loading/parsing
+		get_auto_play		Whether or not the gif is set to play automatically
+		get_length			The number of frames in the gif
+		get_current_frame	The index of the currently displayed frame of the gif
+		For additional customization (viewport inside iframe) these params may be passed:
+		c_w, c_h - width and height of canvas
+		vp_t, vp_l, vp_ w, vp_h - top, left, width and height of the viewport
+		A bonus: few articles to understand what is going on
+			http://enthusiasms.org/post/16976438906
+			http://www.matthewflickinger.com/lab/whatsinagif/bits_and_bytes.asp
+			http://humpy77.deviantart.com/journal/Frame-Delay-Times-for-Animated-GIFs-214150546
 */
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -73,15 +71,11 @@
         }
         return a;
     };
-
-
-
-    function convertCanvasToImage(canvas) {
+  function convertCanvasToImage(canvas) {
       var image = new Image();
       image.src = canvas.toDataURL("image/png");
       return image;
     };
-
     // Stream
     /**
      * @constructor
@@ -196,7 +190,8 @@
 
     // The actual parsing; returns an object with properties.
     var parseGIF = function (st, handler) {
-        handler || (handler = {});
+		
+         handler || (handler = {});
 
         // LZW (GIF-specific)
         var parseCT = function (entries) { // Each entry is 3 bytes, for RGB.
@@ -633,9 +628,9 @@
                     // If we disposed every frame including first frame up to this point, then we have
                     // no composited frame to restore to. In this case, restore to background instead.
                     if (disposalRestoreFromIdx !== null) {
-                      frame.putImageData(frames[disposalRestoreFromIdx].data, 0, 0);
+                    	frame.putImageData(frames[disposalRestoreFromIdx].data, 0, 0);
                     } else {
-                      frame.clearRect(lastImg.leftPos, lastImg.topPos, lastImg.width, lastImg.height);
+                    	frame.clearRect(lastImg.leftPos, lastImg.topPos, lastImg.width, lastImg.height);
                     }
                 } else {
                     disposalRestoreFromIdx = currIdx - 1;
@@ -755,9 +750,7 @@
                 }
 
                 offset = frameOffsets[i];
-                // console.log(frames);
-                // console.log(frames[i]);
-                // console.log(frames[i].data);
+
                 tmpCanvas.getContext("2d").putImageData(frames[i].data, offset.x, offset.y);
                 ctx.globalCompositeOperation = "copy";
                 ctx.drawImage(tmpCanvas, 0, 0);
@@ -919,12 +912,12 @@
             get_loading      : function() { return loading },
             get_auto_play    : function() { return options.auto_play },
             get_length       : function() { return player.length() },
-            get_current_frame: function() { return player.current_frame() },
-            get_png_srcs: function() { 
-                var pngArray = [];   
+			get_png_srcs: function() { 
+                  var pngArray = [];   
                 for(var a = 0; a < player.length(); a++){
                     player.move_to(a);
-                    var tempvar = convertCanvasToImage(canvas);
+					var canvas = this.get_canvas();
+                     var tempvar = convertCanvasToImage(canvas);
                     // console.log(tempvar);
                     // console.log(typeof tempvar);
                     pngArray.push(tempvar.src);
@@ -932,6 +925,7 @@
                 }
                 return pngArray;
             },
+            get_current_frame: function() { return player.current_frame() },
             load_url: function(src,callback){
                 if (!load_setup(callback)) return;
 
@@ -971,6 +965,7 @@
                     }
 
                     stream = new Stream(data);
+
                     setTimeout(doParse, 0);
                 };
                 h.onprogress = function (e) {
@@ -994,4 +989,4 @@
 
     return SuperGif;
 }));
- 
+
