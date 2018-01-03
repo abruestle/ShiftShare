@@ -39,6 +39,36 @@ function facePlusPlusApi() {
         return token;
     }
 
+    this.detectFaceFromBlob = function(blob) {
+           var data = new FormData();
+        data.append('image_file', blob);
+          data.append("api_key", this.api_key);
+        data.append("api_secret", this.api_secret);
+        var token = "";
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: this.detect_url,
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            async: false,
+            success: function (data) {
+
+                token = data.faces[0].face_token;
+            },
+            error: function (e) {
+
+                $("#result").text(e.responseText);
+                console.log("ERROR : ", e);
+                $("#btnSubmit").prop("disabled", false);
+            }
+        });
+        return token;
+    }
+
     this.analyzeFace = function (token) {
         var data = {api_key: this.api_key, api_secret: this.api_secret, face_tokens: token, return_landmark: 1};
         var response = {};
@@ -78,6 +108,46 @@ function facePlusPlusApi() {
         reader.readAsDataURL(input[0].files[0]);
         return result;
     }
+
+   this.setCanvasDimensionsFromBlob = function (blob, canvas_id) {
+         var reader = new FileReader();
+        var result = {};
+        reader.onload = function (e) {
+            var img = new Image;
+            img.onload = function () {
+                var width = img.width;
+                var height = img.height;
+                $("#" + canvas_id).attr("width", width);
+                $("#" + canvas_id).attr("height", height);
+            };
+            img.src = reader.result;
+        };
+        reader.readAsDataURL(blob);
+        return result;
+    }
+
+
+    this.drawCanvasImageFromBlob = function (blob, canvas_id, coordinates, options) {
+        var canvas = document.getElementById(canvas_id);
+        var context = canvas.getContext("2d");
+         var reader = new FileReader();
+        reader.onload = function (e) {
+            var img = new Image();
+            img.addEventListener("load", function () {
+                context.drawImage(img, 0, 0);
+                var face = new facePlusPlusApi();
+                if (options.boundingbox === true) {
+                    face.drawBoundingBox(canvas_id, coordinates);
+                }
+                if (options.highlight === true) {
+                    face.highlightLandmarks(canvas_id, coordinates);
+                }
+            });
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(blob);
+    }
+
 
     this.drawCanvasImageFromFileUpload = function (file_input_id, canvas_id, coordinates, options) {
         var canvas = document.getElementById(canvas_id);
@@ -205,8 +275,7 @@ function facePlusPlusApi() {
 
     this.getLeftEye = function (coordinates) {
         var landmarks = coordinates.coordinates;
-        console.log(landmarks)
-        var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
+         var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
 
         var topleft = landmarks.left_eye_upper_left_quarter;
         var topright = landmarks.left_eye_upper_right_quarter;
@@ -235,8 +304,7 @@ function facePlusPlusApi() {
 
     this.getRightEye = function (coordinates) {
         var landmarks = coordinates.coordinates;
-        console.log(landmarks)
-        var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
+         var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
 
         var topleft = landmarks.right_eye_upper_left_quarter;
         var topright = landmarks.right_eye_upper_right_quarter;
@@ -265,8 +333,7 @@ function facePlusPlusApi() {
 
     this.getNoseTip = function (coordinates) {
         var landmarks = coordinates.coordinates;
-        console.log(landmarks)
-        var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
+         var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
 
         var topleft = landmarks.nose_contour_left2;
         var topright = landmarks.nose_contour_right2;
@@ -295,8 +362,7 @@ function facePlusPlusApi() {
 
     this.getNoseBridge = function (coordinates) {
         var landmarks = coordinates.coordinates;
-        console.log(landmarks)
-        var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
+         var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
 
         var topleft = landmarks.nose_contour_left1;
         var topright = landmarks.nose_contour_right1;
@@ -325,8 +391,7 @@ function facePlusPlusApi() {
 
     this.getNose = function (coordinates) {
         var landmarks = coordinates.coordinates;
-        console.log(landmarks)
-        var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
+         var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
 
         var topleft = landmarks.nose_contour_left1;
         var topright = landmarks.nose_contour_right1;
@@ -355,8 +420,7 @@ function facePlusPlusApi() {
 
     this.getMouth = function (coordinates) {
         var landmarks = coordinates.coordinates;
-        console.log(landmarks)
-        var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
+         var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
 
         var topleft = landmarks.mouth_upper_lip_left_contour2;
         var topright = landmarks.mouth_upper_lip_right_contour2;
@@ -385,8 +449,7 @@ function facePlusPlusApi() {
 
     this.getTopLip = function (coordinates) {
         var landmarks = coordinates.coordinates;
-        console.log(landmarks)
-        var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
+         var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
 
         var topleft = landmarks.mouth_upper_lip_left_contour1;
         var topright = landmarks.mouth_upper_lip_right_contour1;
@@ -415,8 +478,7 @@ function facePlusPlusApi() {
 
     this.getBottomLip = function (coordinates) {
         var landmarks = coordinates.coordinates;
-        console.log(landmarks)
-        var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
+         var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
 
         var topleft = landmarks.mouth_lower_lip_left_contour1;
         var topright = landmarks.mouth_lower_lip_right_contour1;
@@ -445,8 +507,7 @@ function facePlusPlusApi() {
 
     this.getEyesToMouth = function (coordinates) {
         var landmarks = coordinates.coordinates;
-        console.log(landmarks)
-        var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
+         var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
 
         var topleft = landmarks.left_eyebrow_upper_left_quarter;
         var topright = landmarks.right_eyebrow_upper_right_quarter;
@@ -475,8 +536,7 @@ function facePlusPlusApi() {
 
     this.getEyesToEyes = function (coordinates) {
         var landmarks = coordinates.coordinates;
-        console.log(landmarks)
-        var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
+         var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
 
         var topleft = landmarks.left_eyebrow_upper_left_quarter;
         var topright = landmarks.right_eyebrow_upper_right_quarter;
@@ -623,8 +683,7 @@ function facePlusPlusApi() {
     this.getMonocle = function (coordinates) {
         var landmarks = coordinates.coordinates;
         var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
-        console.log(landmarks);
-        var topleft = {x: 0, y: landmarks.right_eyebrow_upper_right_quarter.x};
+         var topleft = {x: 0, y: landmarks.right_eyebrow_upper_right_quarter.x};
         var topright = landmarks.contour_right1;
         var bottomright = {x: landmarks.contour_right1.x, y: 0};
         var bottomleft = {x: 0, y: 0};
@@ -654,8 +713,7 @@ function facePlusPlusApi() {
         var boundingbox = coordinates.rectangle;
 
         var rectangle = {topleft: 0, topright: 0, bottomright: 0, bottomleft: 0};
-        console.log(landmarks);
-        var topleft = {x: 0, y: landmarks.right_eyebrow_upper_right_quarter.x};
+         var topleft = {x: 0, y: landmarks.right_eyebrow_upper_right_quarter.x};
         var topright = landmarks.contour_right1;
         var bottomright = {x: landmarks.contour_right1.x, y: 0};
         var bottomleft = {x: landmarks.contour_left1.x, y: 0};
