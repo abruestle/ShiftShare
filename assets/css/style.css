@@ -77,6 +77,14 @@ body {
   height: 0px;
 }
 
+.topic {
+	margin-top: 5px;
+	margin-right: 5px;
+}
+
+#accordion .col .card div .card-block {
+	margin-right: -5px;
+}
 
 /*.bodyCollapsed {
   /* CSS for the collapsed footer! Yay!*/
