@@ -16,10 +16,15 @@ body {
 
 
 .footer2 {
-	height:120px;
+	height:125px;
 	bottom:80px;
    -webkit-transition: height .1s; /* Safari */
    transition: height .1s;
+}
+
+.footer2 .container {
+   padding-top:10px;
+   padding-bottom:10px;
 }
 
 #chat p {

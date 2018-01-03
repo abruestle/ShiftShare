@@ -34,6 +34,9 @@ var gifRetriever = {
 	    	setTimeout(function(){
 			  $grid.masonry();
 			}, 200);
+	    	setTimeout(function(){
+			  $grid.masonry();
+			}, 500);
 	    });
 
 	},
@@ -86,6 +89,7 @@ var gifRetriever = {
 		
 	}
 }
+
 
 gifRetriever.startUp();
 
