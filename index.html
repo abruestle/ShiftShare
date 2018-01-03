@@ -21,6 +21,10 @@
 		<!-- masonry -->
 		<script src="https://unpkg.com/masonry-layout@4.2.1/dist/masonry.pkgd.min.js"></script>
 		<script src="https://unpkg.com/imagesloaded@4.1.4/imagesloaded.pkgd.min.js"></script>
+		<!-- face api -->
+		<script src="assets/js/libs/utilities/facePlusPlusApi.js"></script>
+		<script src="assets/js/libs/utilities/fxHelper.js"></script>
+		<script src="assets/js/webcam.js"></script>
 		<!-- our css and favicon -->
 		<link href="assets/css/style.css" rel="stylesheet">
 		<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
@@ -30,8 +34,8 @@
 			<nav>
 				<!-- nav heading -->
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
-					<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">My Gifs</a>
-					<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Webcam</a>
+					<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Shift!</a>
+					<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Snap!</a>
 					<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Share!</a>
 				</div>
 			</nav>
@@ -153,7 +157,34 @@
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+				<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+					<p id="webcamComments">
+						Take a shot!
+					</p>
+					<div class="row">
+						<div class="col">
+							<video autoplay></video>
+						</div>
+						<div class="col-sm-3">
+
+							<div class="btn-group-vertical">
+								<button type="button" class="btn btn-secondary" id="snapshot">Snap</button>
+							    <button type="button" class="btn btn-secondary btn-file">Search<input type="file" id="face"></button>
+							    <button type="button" class="btn btn-secondary">Save</button>
+							</div>
+							<br/>
+							<!-- This code works except won't let me apply bootstrap stuff onto it. -->
+					        <!-- <form class="btn btn-secondary" id="face-upload" action="#" method="multipart-formdata">
+					        	            <input type="file" id="face" />
+
+					             <input class="btn btn-secondary" type="submit" />
+					        </form> -->
+						</div>
+					</div>
+			        <canvas class="face" id="face_1">
+
+			        </canvas>
+				</div>
 				<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
 					<p>
 						Here are shared gifs!
