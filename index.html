@@ -34,9 +34,9 @@
 			<nav>
 				<!-- nav heading -->
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
-					<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Shift!</a>
-					<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Snap!</a>
-					<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Share!</a>
+					<a class="nav-item nav-link active" id="nav-shift-tab" data-toggle="tab" href="#nav-shift" role="tab" aria-controls="nav-home" aria-selected="true">Shift!</a>
+					<a class="nav-item nav-link" id="nav-snap-tab" data-toggle="tab" href="#nav-snap" role="tab" aria-controls="nav-profile" aria-selected="false">Snap!</a>
+					<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-share" role="tab" aria-controls="nav-share" aria-selected="false">Share!</a>
 				</div>
 			</nav>
 			<!-- heading (not changed for different areas) -->
@@ -51,7 +51,7 @@
 			</div>
 			<div class="tab-content" id="nav-tabContent">
 				<!-- My Gifs -->
-				<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+				<div class="tab-pane fade show active" id="nav-shift" role="tabpanel" aria-labelledby="nav-shift-tab">
 					<p>
 						Choose topics from categories in the dropdown, or make your own up!
 					</p>
@@ -157,13 +157,13 @@
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+				<div class="tab-pane fade" id="nav-snap" role="tabpanel" aria-labelledby="nav-snap-tab">
 					<p id="webcamComments">
 						Take a shot!
 					</p>
 					<div class="row">
 						<div class="col">
-							<video autoplay></video>
+							<video autoplay id="webcamVideo"></video>
 						</div>
 						<div class="col-sm-3">
 
@@ -185,7 +185,7 @@
 
 			        </canvas>
 				</div>
-				<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+				<div class="tab-pane fade" id="nav-share" role="tabpanel" aria-labelledby="nav-share-tab">
 					<p>
 						Here are shared gifs!
 					</p>
