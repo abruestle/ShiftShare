@@ -1,23 +1,33 @@
 //backend file storage. Not currently tested/working
 
 // Initialize Firebase
-var config = {
-  apiKey: "AIzaSyCqW_av0XGX8OP-LQUWL2BweGy1HpxS2L8",
-  authDomain: "shiftshare-3be77.firebaseapp.com",
-  databaseURL: "https://shiftshare-3be77.firebaseio.com",
-  projectId: "shiftshare-3be77",
-  storageBucket: "shiftshare-3be77.appspot.com",
-  messagingSenderId: "732473847830"
-};
-firebase.initializeApp(config);
+// var config = {
+//   apiKey: "AIzaSyCqW_av0XGX8OP-LQUWL2BweGy1HpxS2L8",
+//   authDomain: "shiftshare-3be77.firebaseapp.com",
+//   databaseURL: "https://shiftshare-3be77.firebaseio.com",
+//   projectId: "shiftshare-3be77",
+//   storageBucket: "shiftshare-3be77.appspot.com",
+//   messagingSenderId: "732473847830"
+// };
+// firebase.initializeApp(config);
 
 //creates storage references to firebase
 var storage = firebase.storage();
 var storageRef = storage.ref();
-
+console.log("in storage.js");
 //create refererence to images child
 var imagesRef = storageRef.child('images');
 
+var imageNames = [];
+var imageNum = 0;
+
+database.ref().on("value", function(snapshot){
+	if(snapshot.val()===null){}
+  else{
+  	imageNames = snapshot.val().imgNames;
+  	imageNum = snapshot.val().imageNum;
+  }
+});
 //upload file from file type input
 function uploadFile(file){
 	console.log("in uploadFile from fileStorage.js");
@@ -28,7 +38,20 @@ function uploadFile(file){
 //upload canvas as blob to 
 function uploadImage(id){
 	console.log("uploadImage");
-	document.getElementById(id).toBlob(function (blob) { var currentImageRef = imagesRef.child(id); currentImageRef.put(blob); })
+	document.getElementById(id).toBlob(function (blob) { 
+		console.log(blob); 
+		var currentImageRef = imagesRef.child(id); 
+		currentImageRef.put(blob); });
+	// var dataUrl = document.getElementById(id).toDataURL();
+	// var currentImageRef = imagesRef.child(id);
+	// currentImageRef.putString(dataUrl, 'data_url');
+
+	imageNames.push(id);
+	imageNum++;
+	database.ref().set({
+		imgNames: imageNames,
+		imageNum: imageNum
+	});
 }
 
 
@@ -94,4 +117,7 @@ function getImageCanvas(imageID){
 // window.onload = function() {
 // 	document.getElementById('file').addEventListener('change', handleFileUpload);
 // }
+
+
+//var database has already been declared
 

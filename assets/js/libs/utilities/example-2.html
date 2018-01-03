@@ -22,6 +22,7 @@
         <canvas class="face" id="face_1">
 
         </canvas>
+        <script src="../../script_chat.js"></script>
         <script src="storage.js"></script>
         <script>
             $(document).ready(function () {
@@ -43,8 +44,8 @@
                         fx.applyFilter("face_1", coordinates, "eye-lasers");
                     }, 500);
 
-                    // uploadImage("face_1");
-                    getImageCanvas("face_1");
+                    uploadImage("face_1");
+                    // getImageCanvas("face_1");
                 });
             });
         </script>
