@@ -24,7 +24,6 @@
 		<!-- face api -->
 		<script src="assets/js/libs/utilities/facePlusPlusApi.js"></script>
 		<script src="assets/js/libs/utilities/fxHelper.js"></script>
-		<script src="assets/js/webcam.js"></script>
 		<!-- our css and favicon -->
 		<link href="assets/css/style.css" rel="stylesheet">
 		<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
@@ -191,7 +190,39 @@
 					</p>
 					<div class="row">
 						<div class="col">
-							<div class="gallery-wrapper clearfix" id="sharedImages">
+							<div class="carousel slide multi-item-carousel" id="theCarousel">
+        <div class="carousel-inner">
+          <div class="item active">
+            <div class="col-xs-4"><a href="#1"><img src="https://placehold.it/300/f44336/000000" class="img-responsive"></a></div>
+          </div>
+          <div class="item">
+            <div class="col-xs-4"><a href="#1"><img src="https://placehold.it/300/e91e63/000000" class="img-responsive"></a></div>
+          </div>
+          <div class="item">
+            <div class="col-xs-4"><a href="#1"><img src="https://placehold.it/300/9c27b0/000000" class="img-responsive"></a></div>
+          </div>
+          <div class="item">
+            <div class="col-xs-4"><a href="#1"><img src="https://placehold.it/300/673ab7/000000" class="img-responsive"></a></div>
+          </div>
+          <div class="item">
+            <div class="col-xs-4"><a href="#1"><img src="https://placehold.it/300/4caf50/000000" class="img-responsive"></a></div>
+          </div>
+          <div class="item">
+            <div class="col-xs-4"><a href="#1"><img src="https://placehold.it/300/8bc34a/000000" class="img-responsive"></a></div>
+          </div>
+          <!-- add  more items here -->
+          <!-- Example item start:  -->
+          
+          <div class="item">
+            <div class="col-xs-4"><a href="#1"><img src="https://placehold.it/300/8bc34a/000000" class="img-responsive"></a></div>
+          </div>
+          
+          <!--  Example item end -->
+        </div>
+        <a class="left carousel-control" href="#theCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+        <a class="right carousel-control" href="#theCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+      </div>
+						<!-- 	<div class="gallery-wrapper clearfix" id="sharedImages">
 								<div class="col-md-4 grid-sizer"></div>
 								<div class="col-md-4 grid-item">
 									<div class="card"><img class="card-img-top img-fluid" src="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_s.gif" data-still="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_s.gif" data-animate="https://media3.giphy.com/media/Vin5Om7uTdqiQ/200w_d.gif" data-state="still" id="https://media3.giphy.com/media/Vin5Om7uTdqiQ"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm show" value="https://media3.giphy.com/media/Vin5Om7uTdqiQ">Show!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm save" value="https://media3.giphy.com/media/Vin5Om7uTdqiQ">Save!</button></div><div class="col text-right"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div>
@@ -211,7 +242,7 @@
 								<div class="col-md-4 grid-item">
 									<img class="img-fluid" src="https://via.placeholder.com/1024x600">
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -254,6 +285,7 @@
     <script src="assets/js/script_chat.js"></script>
     <script src="assets/js/shared.js"></script>
     <script src="assets/js/libs/utilities/storage.js"></script>
+		<script src="assets/js/webcam.js"></script>
 
 		<!--     <script>
 					***must have timeout supergif is asynchronous***
