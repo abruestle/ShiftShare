@@ -115,8 +115,11 @@ function facePlusPlusApi() {
         reader.onload = function (e) {
             var img = new Image;
             img.onload = function () {
-                var width = img.width;
-                var height = img.height;
+                var width = img.naturalWidth;
+                var height = img.naturalHeight; 
+                var canvas = document.getElementById(canvas_id);
+                canvas.height = height;
+                canvas.width = width;
                 $("#" + canvas_id).attr("width", width);
                 $("#" + canvas_id).attr("height", height);
             };
