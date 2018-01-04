@@ -82,7 +82,7 @@ body {
   height: 0px;
 }
 
-.topic {
+.topic, .gifEffect {
 	margin-top: 5px;
 	margin-right: 5px;
 }
