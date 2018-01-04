@@ -1,9 +1,9 @@
 function fxHelper() {
-
+ 
 //    Properties ______________________________________________________
-    this.url = "assets/js/libs/utilities/effects/";
-    this.clown_face = this.url + "clown-face.png" 
-	+ "?" + Math.random();
+    // this.url = "assets/js/libs/utilities/effects/";
+    this.url = "";
+    this.clown_face = this.url + "clown-face.png";
     this.nose_mustache = this.url + "nose-mustache.png";
     this.hipster_glasses = this.url + "hipster-glasses.png";
     this.crazy_eye_glasses = this.url + "crazy-eye-glasses.png";
@@ -86,28 +86,7 @@ function fxHelper() {
         }
     }
 
-	this.getBase64Image = function(imgurl) {
-	var img = document.createElement("img");
-	img.src = imgurl;
-
-    // Create an empty canvas element
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-
-    // Copy the image contents to the canvas
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-
-    // Get the data-URL formatted image
-    // Firefox supports PNG and JPEG. You could check img.src to
-    // guess the original format, but be aware the using "image/jpg"
-    // will re-encode the image.
-    var dataURL = canvas.toDataURL("image/png");
-
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-}
-	
+ 
     //  Filters
 
     this.clownFace = function (canvas_id, coordinates) {
@@ -121,7 +100,7 @@ function fxHelper() {
  
 		
  
-        img.src = this.getBase64Image(this.clown_face);
+        img.src = this.clown_face;
 
         var paddedwidth = width * 1.12;
         var paddedheight = height * 1.12;

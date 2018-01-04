@@ -2,6 +2,7 @@
     'use strict';
     var video = document.querySelector('video')
       , canvas;
+      var localstream = null;
     /**
      *  generates a still frame image from the stream in the <video>
      *  appends the image to the <body>
@@ -79,6 +80,7 @@
       navigator.mediaDevices.getUserMedia({video: true})
       // permission granted:
         .then(function(stream) {
+          localstream = stream;
           video.src = window.URL.createObjectURL(stream);
           video.addEventListener('click', takeSnapshot);
         })
@@ -88,4 +90,28 @@
         });
     }
     });
+
+$("#nav-contact-tab").click(function(){
+  vidOff();
+});
+
+$("#nav-shift-tab").click(function(){
+  vidOff();
+});
+
+  function vidOff() {
+   
+  video.pause();
+  video.src = "";
+  localstream.getTracks()[0].stop();
+  console.log("Vid off");
+}
+
+  function vidOn() {
+  
+  video.play();
+  video.src = window.URL.createObjectURL(localstream);
+  localstream.getTracks()[0].play();
+  console.log("Vid on");
+}
   })();
