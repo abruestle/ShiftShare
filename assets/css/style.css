@@ -204,7 +204,7 @@ video, img {
 	background-color: white;
 }
 
-#faceBox {
+#faceBox, #face_1 {
 	height:0px;
 	padding-top: 56.25%;
 }
