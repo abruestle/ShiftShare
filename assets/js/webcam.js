@@ -71,7 +71,7 @@
     }
     return new Blob([ia], {type:mimeString});
 }
-  
+  $("#nav-snap-tab").click(function(){
     // use MediaDevices API
     // docs: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
     if (navigator.mediaDevices) {
@@ -87,4 +87,5 @@
           $('#webcamComments').text('Could not access the camera. Error: ' + error.name);
         });
     }
+    });
   })();
