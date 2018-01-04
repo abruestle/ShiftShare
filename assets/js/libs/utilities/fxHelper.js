@@ -369,7 +369,7 @@ function fxHelper() {
         for (var key in filters) {
             var filter = filters[key];
             var filtername = filter.replace("-", " ");
-            $("#collapseGifEffects .card-block").append('<button class="filterButton" type = "button" value="' + filter + '" class="btn btn-default topic">'+gifRetriever.toTitleCase(filtername).trim()+'</button>');
+            $("#collapseGifEffects .card-block").append('<button class="filterButton btn btn-default gifEffect" type = "button" value="' + filter + '">'+gifRetriever.toTitleCase(filtername).trim()+'</button>');
         }
     }
 
