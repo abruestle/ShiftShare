@@ -41,8 +41,8 @@ var gifRetriever = {
 
 	},
 	getCategory: function() {
-		//
-		$("#categoryTopics").empty();
+		$("#collapseCategoryTopics .card-block").empty();
+
 		for (var i = 0; i < gifRetriever.topics[gifRetriever.topicCategories.indexOf((gifRetriever.curCategory).toLowerCase())].length; i++) {
 			$("#categoryTopics").append(gifRetriever.buttonCreator(gifRetriever.topics[gifRetriever.topicCategories.indexOf((gifRetriever.curCategory).toLowerCase())][i], "CategoryTopics"));
 		}
