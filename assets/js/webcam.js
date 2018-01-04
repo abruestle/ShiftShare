@@ -7,11 +7,11 @@
      *  appends the image to the <body>
      */
     function takeSnapshot() {
-      var img = document.querySelector('img') || document.createElement('img');
+      var img = document.createElement('img');
       var context;
       var width = video.offsetWidth
         , height = video.offsetHeight;
-      canvas = canvas || document.createElement('canvas');
+      canvas = document.getElementById('face_1');
       canvas.width = width;
       canvas.height = height;
       context = canvas.getContext('2d');
@@ -19,6 +19,21 @@
       img.src = canvas.toDataURL('image/png');
       return img;
     }
+	
+	function addWebCamCard() {
+			 var canvas = document.getElementById("face_1");
+					 var url = canvas.toDataURL();
+					 var html = $('<div class="col-md-4 grid-item"><div class="card"><img class="snapshot card-img-top img-fluid" src="'+ url +'"   data-original="'+ url +'"  data-still = "'+ url +'" data-animate = "'+ url +'" data-state = "still" class="gif" id="'+ url +'"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm shift" value="'+ url +'">Shift!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm share" value="'+ url +'">Share!</button></div><div class="col text-right" id="progressArea"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div></div>');            
+            
+            $("#images .grid-sizer").after(html);    
+            $grid.masonry( 'prepended', $(html) );    
+            setTimeout(function(){    
+              $grid.masonry();
+            }, 200);
+            setTimeout(function(){    
+              $grid.masonry();
+            }, 500);
+	}
    $("#snapshot").click(function() {
    		var img = takeSnapshot();
    		var blob = dataURItoBlob(img.src);
@@ -32,9 +47,12 @@
                     face.setCanvasDimensionsFromBlob(blob, "face_1");
                     face.drawCanvasImageFromBlob(blob, "face_1", coordinates, options);
                     setTimeout(function () {
-                        var fx = new fxHelper();
-                        fx.applyFilter("face_1", coordinates, "cat");
+                        // var fx = new fxHelper();
+                        // fx.applyFilter("face_1", coordinates, "cat");
+						setTimeout(addWebCamCard(), 500);
                      }, 500);
+					 
+				
    });
    function dataURItoBlob(dataURI) {
     // convert base64/URLEncoded data component to raw binary data held in a string

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Media Device Access</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    video, img {
+      max-width:100%;
+    }
+  </style>
+  <script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
+
+ 	    <script src="facePlusPlusApi.js"></script>
+        <script src="fxHelper.js"></script>
+        <script src="libgif2.js"></script>
+ 
+</head>
+<body>
+<div id="imgcontainer"></div>
+<div id="canvascontainer" style="display:none"></div>
+
+<img id="testgif" crossOrigin="anonymous" src="https://media.giphy.com/media/xT0xezwKyz4VXZlBGU/giphy.gif"/>
+ 
+<br/><button id="split">Split Gif</button>
+
+<video autoplay></video>
+
+<br/>
+<button id="snapshot">Take Snapshot</button>
+<br/>
+        <form id="face-upload" action="#" method="multipart-formdata">
+        	            <input type="file" id="face" />
+
+             <input type="submit" />
+        </form>
+        <br/>
+
+        <canvas class="face" id="face_1">
+
+        </canvas>
+        <script>
+		
+		  function dataURItoBlob(dataURI) {
+
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+        byteString = atob(dataURI.split(',')[1]);
+    else
+        byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], {type:mimeString});
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+	function wasteTime() {
+	console.log("time wasted");
+	}
+	async function doStuff(pngs) { 
+	
+				for (var key in pngs) {
+					var png = pngs[key];
+ 					var blob = dataURItoBlob(png);
+					console.log(blob);	
+					var options = {
+                        boundingbox: false,
+                        highlight: false
+                    };
+                    var face = new facePlusPlusApi();
+                    var token = face.detectFaceFromBlob(blob);
+                    var coordinates = face.analyzeFace(token);
+					var canvas = document.createElement("canvas");
+					canvas.crossOrigin="anonymous";
+					document.getElementById("canvascontainer").appendChild(canvas);
+
+					canvas.id = blob.size;
+                    face.setCanvasDimensionsFromBlob(blob, canvas.id);
+                    face.drawCanvasImageFromBlob(blob, canvas.id, coordinates, options);
+					await sleep(1000);
+                    var fx = new fxHelper();
+                    fx.applyFilter(canvas.id, coordinates, "clown-face");
+					
+					await sleep(1000);
+					
+					}
+					
+					return new Promise(resolve => setTimeout(resolve, 1));
+					
+ 		}
+		
+		async function all(pngs) {
+				await doStuff(pngs);
+							console.log("this should be after wasted time");
+				$("#canvascontainer canvas").each(function(){
+					var id = $(this).attr("id");
+					var canvas = document.getElementById(id);
+				});
+		}
+		
+		    $(document).ready(function () {
+                $("#split").click(function (event) {
+					var gif = document.getElementById("testgif");
+					var sg =  new SuperGif({gif:gif});
+					sg.load();
+					setTimeout(function(){
+					var pngs = sg.get_png_srcs();
+					all(pngs);
+					}, 500);
+                });
+            });
+		
+		
+		
+
+        </script>
+</body>
+</html>
