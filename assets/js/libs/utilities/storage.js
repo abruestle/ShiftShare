@@ -6,7 +6,9 @@ database.ref().on("value", function(snapshot){
   else{
   	if(snapshot.val().images !== undefined){
   		images = snapshot.val().images;
-  		imageNum = images.length;
+  		if(snapshot.val().imageNum !== undefined){
+  			imageNum = snapshot.val().imageNum;
+  		}
   		// console.log(image);
   		$(".carousel-inner").empty();
   		for(var i = 0; i < images.length; i++){
@@ -58,9 +60,11 @@ $(document).on("click", ".share", function(){
 		imageNum++;
 	}else{
 			images[imageNum%10] = store;
+			imageNum++;
 	}
 	database.ref().update({
-		images: images
+		images: images,
+		imageNum: imageNum
 	});
 });
 
