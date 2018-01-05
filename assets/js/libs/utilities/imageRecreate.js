@@ -50,18 +50,18 @@ $(document).on("click", ".share", function(){
 });
 
 //upload canvas as blob to 
-function uploadImage(id){
-	console.log("uploadImage");
-	var image = document.getElementById(id);
-	var url = 
+// function uploadImage(id){
+// 	console.log("uploadImage");
+// 	var image = document.getElementById(id);
+// 	var url = 
 
-	images.push(id);
-	imageNum++;
-	database.ref().set({
-		imgNames: imageNames,
-		imageNum: imageNum
-	});
-}
+// 	images.push(id);
+// 	imageNum++;
+// 	database.ref().set({
+// 		imgNames: imageNames,
+// 		imageNum: imageNum
+// 	});
+// }
 
 
 //add file from html file input

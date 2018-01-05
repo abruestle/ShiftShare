@@ -5,7 +5,7 @@ database.ref().on("value", function(snapshot){
 	if(snapshot.val()===null){}
   else{
   	image = snapshot.val().image;
-  	console.log(image);
+  	// console.log(image);
   	var div = document.createElement('div');
   	div.classList.add("carousel-item");
   	div.classList.add("col-md-3");
@@ -14,7 +14,7 @@ database.ref().on("value", function(snapshot){
   	divcard.classList.add("card");
   	div.append(divcard);
   	divcard.innerHTML = image;
-  	console.log(divcard.children[0].id);
+  	// console.log(divcard.children[0].id);
   	var divLast = document.createElement('div');
   	divLast.classList.add("row");
   	divLast.classList.add("justify-content-center");
@@ -44,7 +44,7 @@ $(document).on("click", ".share", function(){
 	// console.log(store);
 	// store = store.replace(/\\\//g, "/");
 	// console.log(store);
-	database.ref().set({
+	database.ref().update({
 		image: store
 	});
 });
@@ -56,7 +56,7 @@ function uploadImage(id){
 	// console.log(store);
 	// store = store.replace(/\\\//g, "/");
 	// console.log(store);
-	database.ref().set({
+	database.ref().update({
 		image: store
 	});
 }
