@@ -6,13 +6,16 @@ database.ref().on("value", function(snapshot){
   else{
   	if(snapshot.val().images !== undefined){
   		images = snapshot.val().images;
+  		if(snapshot.val().imageNum !== undefined){
+  			imageNum = snapshot.val().imageNum;
+  		}
   		// console.log(image);
   		$(".carousel-inner").empty();
   		for(var i = 0; i < images.length; i++){
   			var div = document.createElement('div');
   			div.classList.add("carousel-item");
   			div.classList.add("col-md-3");
-  			if (i = 0) {
+  			if(i === 0){
   				div.classList.add("active");
   			}
   			var divcard = document.createElement('div');
@@ -29,7 +32,7 @@ database.ref().on("value", function(snapshot){
   			divLast.innerHTML = "<button type=\"button\" class=\"btn btn-primary btn-sm save\" value=\"'"+ divcard.children[0].id+"'\">Save!</button>";
 					//If adding back progress for this: <div class=\"col text-right\" id=\"progressArea\"><div class=\"progress\">"+"<div class=\"progress-bar\" style=\"width:0%\"></div></div></div>
   			console.log(div);
-  			$(".carousel-inner").prepend(
+  			$(".carousel-inner").append(
   				//"<div class=\"carousel-item col-md-3 active\"><div class=\"card\">"+	image +
   			div
 				// 	"<div class=\"row justify-content-center\">
@@ -52,9 +55,16 @@ $(document).on("click", ".share", function(){
 	// console.log(store);
 	// store = store.replace(/\\\//g, "/");
 	// console.log(store);
-	images.push(store);
+	if(imageNum < 10){
+		images.push(store);
+		imageNum++;
+	}else{
+			images[imageNum%10] = store;
+			imageNum++;
+	}
 	database.ref().update({
-		images: images
+		images: images,
+		imageNum: imageNum
 	});
 });
 
