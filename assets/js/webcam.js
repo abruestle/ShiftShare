@@ -38,6 +38,7 @@
 	    setTimeout(function(){    
               $grid.masonry();
             }, 1200);
+		$grid.masonry();
 	}
    $("#snapshot").click(function() {
    		var img = takeSnapshot();
