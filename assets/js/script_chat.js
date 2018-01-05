@@ -12,6 +12,10 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var currentUser = "Anonymous";
 var textInput = "";
+var userStart = false;
+var chatIn = document.getElementById("chatText");
+chatIn.placeholder = "Enter Username";
+
 // collapsing chat event handlers
 
 function collapseFooter() {
@@ -30,11 +34,19 @@ function showFooter() {
 function chat() {
 	event.preventDefault();
 	showFooter();
+
+
 	if(($("#chatText").val()).trim() != "") {
 		//code here for adding name of user
+    if(!userStart){
+      currentUser = $("#chatText").val().trim();
+      chatIn.placeholder = "Speak";
+      userStart = true;
+    }else{
 
-		var p = $("<p>");
-    textInput = $("#chatText").val();
+	 	 var p = $("<p>");
+     textInput = $("#chatText").val();
+    }
 		// p.text(textInput);
     // $("#chat").append(p);
     //code here to send out to firebase
