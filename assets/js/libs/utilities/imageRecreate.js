@@ -49,31 +49,19 @@ $(document).on("click", ".share", function(){
 	});
 });
 
+//upload canvas as blob to 
 function uploadImage(id){
 	console.log("uploadImage");
 	var image = document.getElementById(id);
-	var store = image.outerHTML;
-	// console.log(store);
-	// store = store.replace(/\\\//g, "/");
-	// console.log(store);
+	var url = 
+
+	images.push(id);
+	imageNum++;
 	database.ref().set({
-		image: store
+		imgNames: imageNames,
+		imageNum: imageNum
 	});
 }
-
-//upload canvas as blob to 
-// function uploadImage(id){
-// 	console.log("uploadImage");
-// 	var image = document.getElementById(id);
-// 	var url = 
-
-// 	images.push(id);
-// 	imageNum++;
-// 	database.ref().set({
-// 		imgNames: imageNames,
-// 		imageNum: imageNum
-// 	});
-// }
 
 
 //add file from html file input
@@ -91,10 +79,10 @@ function uploadImage(id){
 // }
 
 //nonfunctional. will return canvas or add it directly to page
-// function getImageCanvas(imageID){
-// 	console.log("infunction");
-// 	console.log(storageRef);
-// 	console.log(imagesRef);
+function getImageCanvas(imageID){
+	console.log("infunction");
+	console.log(storageRef);
+	console.log(imagesRef);
 
 
 // 	var test = storageRef.child('images/face_1.png');
@@ -114,26 +102,26 @@ function uploadImage(id){
 // 	console.log(error);
 // });
 
-// 	imagesRef.child(imageID).getDownloadURL().then(function(url){
-// 		//insert code to instantiate new canvas and add to page display
-// 		var temp = $("<canvas>");
-// 		temp.attr("class", "face");
-// 		temp.attr("id", "face_test");
-// 		$("body").append(temp);
-// 		var canvas = document.getElementById("face_test");
-// 		console.log(url);
-// 		var context = canvas.getContext('2d');
-// 		var imageObj = new Image();
-// 		imageObj.onload = function() {
-// 			console.log("in onload");
-// 			context.drawImage(this,0,0);
-// 		};
-// 		imageObj.src = url;
-// 	}).catch(function(error){
-// 		console.log("firebase errors");
-// 		console.log(error);
-// 	});
-// }
+	imagesRef.child(imageID).getDownloadURL().then(function(url){
+		//insert code to instantiate new canvas and add to page display
+		var temp = $("<canvas>");
+		temp.attr("class", "face");
+		temp.attr("id", "face_test");
+		$("body").append(temp);
+		var canvas = document.getElementById("face_test");
+		console.log(url);
+		var context = canvas.getContext('2d');
+		var imageObj = new Image();
+		imageObj.onload = function() {
+			console.log("in onload");
+			context.drawImage(this,0,0);
+		};
+		imageObj.src = url;
+	}).catch(function(error){
+		console.log("firebase errors");
+		console.log(error);
+	});
+}
 
 // window.onload = function() {
 // 	document.getElementById('file').addEventListener('change', handleFileUpload);
