@@ -46,7 +46,7 @@ $(function () {
         $(this).attr("data-animate", $(this).attr("data-original"));
 
     });
-    $('body').on('click', '.shift', function () {
+    $('body').on('click', '.shift-snapshot', function () {
 
         var canvas_id = Math.random();
 

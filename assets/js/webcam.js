@@ -2,6 +2,7 @@
     'use strict';
     var video = document.querySelector('video')
       , canvas;
+      var localstream = null;
     /**
      *  generates a still frame image from the stream in the <video>
      *  appends the image to the <body>
@@ -24,7 +25,7 @@
 	function addWebCamCard() {
 			 var canvas = document.getElementById("face_1");
 					 var url = canvas.toDataURL();
-					 var html = $('<div class="col-md-4 grid-item"><div class="card"><img class="snapshot card-img-top img-fluid" src="'+ url +'"   data-original="'+ url +'"  data-still = "'+ url +'" data-animate = "'+ url +'" data-state = "still" class="gif" id="'+ url +'"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm shift" value="'+ url +'">Shift!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm share" value="'+ url +'">Share!</button></div><div class="col text-right" id="progressArea"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div></div>');            
+					 var html = $('<div class="col-md-4 grid-item"><div class="card"><img class="snapshot card-img-top img-fluid" src="'+ url +'"   data-original="'+ url +'"  data-still = "'+ url +'" data-animate = "'+ url +'" data-state = "still" class="gif" id="'+ url +'"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm shift shift-snapshot" value="'+ url +'">Shift!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm share" value="'+ url +'">Share!</button></div><div class="col text-right" id="progressArea"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div></div>');            
             
             $("#images .grid-sizer").after(html);    
             $grid.masonry( 'prepended', $(html) );    
@@ -71,7 +72,7 @@
     }
     return new Blob([ia], {type:mimeString});
 }
-  
+  $("#nav-snap-tab").click(function(){
     // use MediaDevices API
     // docs: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
     if (navigator.mediaDevices) {
@@ -79,6 +80,7 @@
       navigator.mediaDevices.getUserMedia({video: true})
       // permission granted:
         .then(function(stream) {
+          localstream = stream;
           video.src = window.URL.createObjectURL(stream);
           video.addEventListener('click', takeSnapshot);
         })
@@ -87,4 +89,29 @@
           $('#webcamComments').text('Could not access the camera. Error: ' + error.name);
         });
     }
+    });
+
+$("#nav-contact-tab").click(function(){
+  vidOff();
+});
+
+$("#nav-shift-tab").click(function(){
+  vidOff();
+});
+
+  function vidOff() {
+   
+  video.pause();
+  video.src = "";
+  localstream.getTracks()[0].stop();
+  console.log("Vid off");
+}
+
+  function vidOn() {
+  
+  video.play();
+  video.src = window.URL.createObjectURL(localstream);
+  localstream.getTracks()[0].play();
+  console.log("Vid on");
+}
   })();

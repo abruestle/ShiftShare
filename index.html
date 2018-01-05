@@ -26,9 +26,18 @@
 		<!-- our css and favicon -->
 		<link href="assets/css/style.css" rel="stylesheet">
 		<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+
+        <script type="text/javascript" src="assets/js/libs/utilities/jsgif-master/LZWEncoder.js"></script>
+        <script type="text/javascript" src="assets/js/libs/utilities/jsgif-master/NeuQuant.js"></script>
+        <script type="text/javascript" src="assets/js/libs/utilities/jsgif-master/GIFEncoder.js"></script>
+        <script type="text/javascript" src="assets/js/libs/utilities/jsgif-master/b64.js"></script>
+        <script type="text/javascript" src="assets/js/gifshift.js"></script>
+
 	</head>
 	<body class = "bodyCollapsed">
 		<div style="display: none" id="canvas-container"></div>
+		<div style="display: none" id="canvas-gif-container"></div>
+		<div style="display: none" id="img-container"></div>
 		<div class="container-fluid">
 			<nav>
 				<!-- nav heading -->
@@ -170,7 +179,7 @@
 						<div class="col-sm-3">
 							<div class="card">
 								<div id="faceBox">
-									<img id="face_snapshot"/>
+									<img id="face_snapshot" class="img-fluid" />
 									<canvas style="display: none" class="face" id="face_1">
 									</canvas>
 								</div>
