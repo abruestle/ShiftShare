@@ -10,8 +10,8 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
-var currentUser = "defaultUser";
-
+var currentUser = "Anonymous";
+var textInput = "";
 // collapsing chat event handlers
 
 function collapseFooter() {
@@ -34,13 +34,13 @@ function chat() {
 		//code here for adding name of user
 
 		var p = $("<p>");
-    var textInput = $("#chatText").val();
+    textInput = $("#chatText").val();
 		// p.text(textInput);
     // $("#chat").append(p);
     //code here to send out to firebase
-    database.ref().set({
+    database.ref().update({
       chat: textInput,
-      user: currentUser
+      user: currentUser,
     });
 	}
 	$("#chatText").val("");
@@ -81,8 +81,14 @@ database.ref().on("value", function(snapshot){
   if(snapshot.val() == null){
   }
   else{
-    $("#chat").append("<p class=\"chatName\">" + snapshot.val().user + "</p>");
-    $("#chat").append("<p>"+snapshot.val().chat + "</p>");
+    if("" !== snapshot.val().chat){
+      $("#chat").append("<p class=\"chatName\">" + snapshot.val().user + "</p>");
+      $("#chat").append("<p>"+snapshot.val().chat + "</p>");
+      var temp = "";
+      database.ref().update({
+        chat: temp
+      });
+    }
   }
 },function(error){
     console.log(error);
