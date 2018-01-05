@@ -206,4 +206,12 @@ video, img {
 
 #faceBox {
 	height:0px;
-	padding-top: 56.25%;
+	padding-top: 75%;
+	position:relative;
+}
+
+#face_snapshot {
+	position: absolute;
+    bottom: 0;
+}
+
