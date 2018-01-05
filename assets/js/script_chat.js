@@ -40,7 +40,7 @@ function chat() {
     //code here to send out to firebase
     database.ref().update({
       chat: textInput,
-      user: currentUser
+      user: currentUser,
     });
 	}
 	$("#chatText").val("");
@@ -81,10 +81,14 @@ database.ref().on("value", function(snapshot){
   if(snapshot.val() == null){
   }
   else{
-
+    if("" !== snapshot.val().chat){
       $("#chat").append("<p class=\"chatName\">" + snapshot.val().user + "</p>");
       $("#chat").append("<p>"+snapshot.val().chat + "</p>");
-
+      var temp = "";
+      database.ref().update({
+        chat: temp
+      });
+    }
   }
 },function(error){
     console.log(error);

@@ -4,35 +4,41 @@ var images = [];
 database.ref().on("value", function(snapshot){
 	if(snapshot.val()===null){}
   else{
-  	image = snapshot.val().image;
-  	// console.log(image);
-  	var div = document.createElement('div');
-  	div.classList.add("carousel-item");
-  	div.classList.add("col-md-3");
-  	div.classList.add("active");
-  	var divcard = document.createElement('div');
-  	divcard.classList.add("card");
-  	div.append(divcard);
-  	divcard.innerHTML = image;
-  	// console.log(divcard.children[0].id);
-  	var divLast = document.createElement('div');
-  	divLast.classList.add("row");
-  	divLast.classList.add("justify-content-center");
-  	divcard.append(divLast);
-  	divLast.innerHTML = "<div class=\"col-md-2\"><button type=\"button\" class=\"btn btn-primary btn-sm see\" value=\"'"+ divcard.children[0].id +"'\">See!</button></div><div class=\"col-md-2\">"+
-			"<button type=\"button\" class=\"btn btn-primary btn-sm save\" value=\"'"+divcard.children[0].id+"'\">Save!</button></div><div class=\"col text-right\" id=\"progressArea\"><div class=\"progress\">"+
-			"<div class=\"progress-bar\" style=\"width:0%\"></div></div></div>";
-  	console.log(div);
-  	$(".carousel-inner").prepend(
-  		//"<div class=\"carousel-item col-md-3 active\"><div class=\"card\">"+	image +
-  	div
-		// 	"<div class=\"row justify-content-center\">
+  	if(snapshot.val().images !== undefined){
+  		images = snapshot.val().images;
+  		// console.log(image);
+  		$(".carousel-inner").empty();
+  		for(var i = 0; i < images.length; i++){
+  			var div = document.createElement('div');
+  			div.classList.add("carousel-item");
+  			div.classList.add("col-md-3");
+  			div.classList.add("active");
+  			var divcard = document.createElement('div');
+  			divcard.classList.add("card");
+  			div.append(divcard);
+  			divcard.innerHTML = images[i];
+  			divcard.children[0].class = "gif";
+  			// console.log(divcard.children[0].id);
+  			var divLast = document.createElement('div');
+  			divLast.classList.add("row");
+  			divLast.classList.add("justify-content-center");
+  			divcard.append(divLast);
+  			divLast.innerHTML = "<div class=\"col-md-2\"><button type=\"button\" class=\"btn btn-primary btn-sm see\" value=\"'"+ divcard.children[0].id +"'\">See!</button></div><div class=\"col-md-2\">"+
+					"<button type=\"button\" class=\"btn btn-primary btn-sm save\" value=\"'"+ divcard.children[0].id+"'\">Save!</button></div><div class=\"col text-right\" id=\"progressArea\"><div class=\"progress\">"+
+					"<div class=\"progress-bar\" style=\"width:0%\"></div></div></div>";
+  			console.log(div);
+  			$(".carousel-inner").prepend(
+  				//"<div class=\"carousel-item col-md-3 active\"><div class=\"card\">"+	image +
+  			div
+				// 	"<div class=\"row justify-content-center\">
 
-		// <div class=\"col-md-2\"><button type=\"button\" class=\"btn btn-primary btn-sm see\" value=\"'"+ image.getAttribute("id") +"'\">See!</button></div><div class=\"col-md-2\">"+
-		// 	"<button type=\"button\" class=\"btn btn-primary btn-sm save\" value=\"'"+image.getAttribute("id")+"'\">Save!</button></div><div class=\"col text-right\" id=\"progressArea\"><div class=\"progress\">"+
-		// 	"<div class=\"progress-bar\" style=\"width:0%\"></div></div></div>
-		//</div></div></div>"
-		);
+				// <div class=\"col-md-2\"><button type=\"button\" class=\"btn btn-primary btn-sm see\" value=\"'"+ image.getAttribute("id") +"'\">See!</button></div><div class=\"col-md-2\">"+
+				// 	"<button type=\"button\" class=\"btn btn-primary btn-sm save\" value=\"'"+image.getAttribute("id")+"'\">Save!</button></div><div class=\"col text-right\" id=\"progressArea\"><div class=\"progress\">"+
+				// 	"<div class=\"progress-bar\" style=\"width:0%\"></div></div></div>
+				//</div></div></div>"
+				);
+  		}
+  	}
   }
 }),
 
@@ -44,8 +50,9 @@ $(document).on("click", ".share", function(){
 	// console.log(store);
 	// store = store.replace(/\\\//g, "/");
 	// console.log(store);
+	images.push(store);
 	database.ref().update({
-		image: store
+		images: images
 	});
 });
 
