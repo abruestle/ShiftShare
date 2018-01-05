@@ -32,7 +32,7 @@ database.ref().on("value", function(snapshot){
   			divLast.innerHTML = "<button type=\"button\" class=\"btn btn-primary btn-sm save\" value=\"'"+ divcard.children[0].id+"'\">Save!</button>";
 					//If adding back progress for this: <div class=\"col text-right\" id=\"progressArea\"><div class=\"progress\">"+"<div class=\"progress-bar\" style=\"width:0%\"></div></div></div>
   			console.log(div);
-  			$(".carousel-inner").prepend(
+  			$(".carousel-inner").append(
   				//"<div class=\"carousel-item col-md-3 active\"><div class=\"card\">"+	image +
   			div
 				// 	"<div class=\"row justify-content-center\">
