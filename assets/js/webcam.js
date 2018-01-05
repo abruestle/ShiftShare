@@ -35,6 +35,9 @@
             setTimeout(function(){    
               $grid.masonry();
             }, 500);
+	    setTimeout(function(){    
+              $grid.masonry();
+            }, 1200);
 	}
    $("#snapshot").click(function() {
    		var img = takeSnapshot();
