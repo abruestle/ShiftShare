@@ -23,9 +23,9 @@ database.ref().on("value", function(snapshot){
   			divLast.classList.add("row");
   			divLast.classList.add("justify-content-center");
   			divcard.append(divLast);
-  			divLast.innerHTML = "<div class=\"col-md-2\"><button type=\"button\" class=\"btn btn-primary btn-sm see\" value=\"'"+ divcard.children[0].id +"'\">See!</button></div><div class=\"col-md-2\">"+
-					"<button type=\"button\" class=\"btn btn-primary btn-sm save\" value=\"'"+ divcard.children[0].id+"'\">Save!</button></div><div class=\"col text-right\" id=\"progressArea\"><div class=\"progress\">"+
-					"<div class=\"progress-bar\" style=\"width:0%\"></div></div></div>";
+  			//If we want a 'See' button:   <button type=\"button\" class=\"btn btn-primary btn-sm see\" value=\"'"+ divcard.children[0].id +"'\">See!</button>"+
+  			divLast.innerHTML = "<button type=\"button\" class=\"btn btn-primary btn-sm save\" value=\"'"+ divcard.children[0].id+"'\">Save!</button>";
+					//If adding back progress for this: <div class=\"col text-right\" id=\"progressArea\"><div class=\"progress\">"+"<div class=\"progress-bar\" style=\"width:0%\"></div></div></div>
   			console.log(div);
   			$(".carousel-inner").prepend(
   				//"<div class=\"carousel-item col-md-3 active\"><div class=\"card\">"+	image +

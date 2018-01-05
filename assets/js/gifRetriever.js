@@ -131,9 +131,8 @@ $("body").on("click", ".topic", function() {
     	gifRetriever.createGif($(this).text());
 
 });
-$("body").on("click", "img", function() {
+$("body").on("click", ".grid-item .card img", function() {
     	gifRetriever.animate(this);
-    	console.log("hi");
 
 });
 
