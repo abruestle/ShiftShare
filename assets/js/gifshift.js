@@ -80,7 +80,7 @@ async function generateCanvases(parent, pngs) {
 async function gifSplitter(parent, gif, pngs) {
         var encoder = new GIFEncoder();
         encoder.setRepeat(0);
-        encoder.setDelay(300);
+        encoder.setDelay(500);
         encoder.start();
         await generateCanvases(parent, pngs);
         console.log("this should be after wasted time");
