@@ -1,8 +1,8 @@
 function fxHelper() {
  
 //    Properties ______________________________________________________
-    // this.url = "assets/js/libs/utilities/effects/";
-    this.url = "";
+     this.url = "assets/js/libs/utilities/effects/";
+    //this.url = "effects/";
     this.clown_face = this.url + "clown-face.png";
     this.nose_mustache = this.url + "nose-mustache.png";
     this.hipster_glasses = this.url + "hipster-glasses.png";

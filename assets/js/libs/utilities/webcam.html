@@ -17,10 +17,17 @@
  	    <script src="facePlusPlusApi.js"></script>
         <script src="fxHelper.js"></script>
         <script src="libgif2.js"></script>
+
+          <script type="text/javascript" src="jsgif-master/LZWEncoder.js"></script>
+    <script type="text/javascript" src="jsgif-master/NeuQuant.js"></script>
+    <script type="text/javascript" src="jsgif-master/GIFEncoder.js"></script>
+        <script type="text/javascript" src="jsgif-master/b64.js"></script>
+
  
 </head>
 <body>
-<div id="imgcontainer"></div>
+    <img id="result"/>
+<div id="imgcontainer" style="display: none"></div>
 <div id="canvascontainer" style="display:none"></div>
 
 <img id="testgif" crossOrigin="anonymous" src="https://media.giphy.com/media/xT0xezwKyz4VXZlBGU/giphy.gif"/>
@@ -93,7 +100,8 @@ function sleep(ms) {
                     face.drawCanvasImageFromBlob(blob, canvas.id, coordinates, options);
 					await sleep(1000);
                     var fx = new fxHelper();
-                    fx.applyFilter(canvas.id, coordinates, "clown-face");
+                    fx.applyFilter(canvas.id, coordinates, "monocle");
+                    fx.applyFilter(canvas.id, coordinates, "top-hat");
 					
 					await sleep(1000);
 					
@@ -104,21 +112,37 @@ function sleep(ms) {
  		}
 		
 		async function all(pngs) {
+            var encoder = new GIFEncoder();
+            encoder.setRepeat(0); 
+            encoder.setDelay(100);
+            encoder.start();
+
 				await doStuff(pngs);
 							console.log("this should be after wasted time");
 				$("#canvascontainer canvas").each(function(){
 					var id = $(this).attr("id");
 					var canvas = document.getElementById(id);
+                    var context = canvas.getContext('2d');
+                    encoder.addFrame(context);
+
+
 				});
+
+                encoder.finish();
+                    var binary_gif = encoder.stream().getData()   
+                    var data_url = 'data:image/gif;base64,'+encode64(binary_gif);
+                    $("#result").attr("src", data_url);
 		}
 		
 		    $(document).ready(function () {
                 $("#split").click(function (event) {
 					var gif = document.getElementById("testgif");
+
 					var sg =  new SuperGif({gif:gif});
 					sg.load();
 					setTimeout(function(){
 					var pngs = sg.get_png_srcs();
+                    $("#imgcontainer").append(gif);
 					all(pngs);
 					}, 500);
                 });

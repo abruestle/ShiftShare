@@ -56,8 +56,12 @@ function facePlusPlusApi() {
             timeout: 600000,
             async: false,
             success: function (data) {
-
-                token = data.faces[0].face_token;
+                if (typeof data.faces[0] == 'undefined') {
+                    token = false
+                } else {
+                     token = data.faces[0].face_token;
+                     console.log("good");
+                }
             },
             error: function (e) {
 

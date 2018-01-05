@@ -25,7 +25,7 @@
 	function addWebCamCard() {
 			 var canvas = document.getElementById("face_1");
 					 var url = canvas.toDataURL();
-					 var html = $('<div class="col-md-4 grid-item"><div class="card"><img class="snapshot card-img-top img-fluid" src="'+ url +'"   data-original="'+ url +'"  data-still = "'+ url +'" data-animate = "'+ url +'" data-state = "still" class="gif" id="'+ url +'"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm shift" value="'+ url +'">Shift!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm share" value="'+ url +'">Share!</button></div><div class="col text-right" id="progressArea"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div></div>');            
+					 var html = $('<div class="col-md-4 grid-item"><div class="card"><img class="snapshot card-img-top img-fluid" src="'+ url +'"   data-original="'+ url +'"  data-still = "'+ url +'" data-animate = "'+ url +'" data-state = "still" class="gif" id="'+ url +'"><div class="card-block"><div class="row justify-content-center"><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm shift shift-snapshot" value="'+ url +'">Shift!</button></div><div class="col-md-2"><button type="button" class="btn btn-primary btn-sm share" value="'+ url +'">Share!</button></div><div class="col text-right" id="progressArea"><div class="progress"><div class="progress-bar" style="width:0%"></div></div></div></div></div></div></div>');            
             
             $("#images .grid-sizer").after(html);    
             $grid.masonry( 'prepended', $(html) );    
