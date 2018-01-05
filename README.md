@@ -1,6 +1,8 @@
 # ShiftShare
 Gif retrieval with face filtering, sharing, and chatting.
 
+
+
 Contributors main areas of work:
 
 Anna Bruestle: Bootstrap, Gif Retrieval, Powerpoint
