@@ -104,6 +104,7 @@ async function gifSplitter(parent, gif, pngs) {
                 progressarea.innerHTML = "<span class='badge badge-primary'>No faces found</span>";
                 shift.setAttribute("disabled", true);
                 share.setAttribute("disabled", true);
+                faces = true;
         }
  }
 
