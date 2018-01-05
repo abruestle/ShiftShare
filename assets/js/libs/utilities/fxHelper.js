@@ -22,10 +22,10 @@ function fxHelper() {
     this.cat_nose = this.url + "cat-nose.png";
     this.cat_left_ear = this.url + "cat-left-ear.png";
     this.cat_right_ear = this.url + "cat-right-ear.png";
-    this.dog_nose = this.url + "dog-nosft-ear.png";
+    this.dog_nose = this.url + "dog-nose-ear.png";
     this.dog_right_ear = this.url + "dog-right-ear.png";
     this.rainbow_vomit = this.url + "rainbow-ve.png";
-    this.dog_left_ear = this.url + "dog-leomit.gif";
+    this.dog_left_ear = this.url + "dog-left-ear.gif";
     this.red_eye_left = this.url + "red-eye-left.png";
     this.red_eye_right = this.url + "red-eye-right.png";
     this.red_eye = this.url + "red-eye.png";
@@ -333,8 +333,7 @@ function fxHelper() {
             "bunny",
             "cat",
             "dog",
-            "red-eyes",
-            "rainbow-vomit"
+            "red-eyes"
         ];
         return filters;
     }
