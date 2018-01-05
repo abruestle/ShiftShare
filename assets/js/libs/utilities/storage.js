@@ -12,7 +12,9 @@ database.ref().on("value", function(snapshot){
   			var div = document.createElement('div');
   			div.classList.add("carousel-item");
   			div.classList.add("col-md-3");
-  			div.classList.add("active");
+  			if (i = 0) {
+  				div.classList.add("active");
+  			}
   			var divcard = document.createElement('div');
   			divcard.classList.add("card");
   			div.append(divcard);
