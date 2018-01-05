@@ -101,7 +101,7 @@ async function gifSplitter(parent, gif, pngs) {
                 var progressarea = parent.querySelector("#progressArea");
                 var shift = parent.querySelector(".shift");
                 var share = parent.querySelector(".share");
-                progressarea.innerHTML = "No faces found";
+                progressarea.innerHTML = "<span class='badge badge-primary'>No faces found</span>";
                 shift.setAttribute("disabled", true);
                 share.setAttribute("disabled", true);
         }
