@@ -94,7 +94,9 @@ database.ref().on("value", function(snapshot){
   }
   else{
     if("" !== snapshot.val().chat){
-      $("#chat").append("<p class=\"chatName\">" + snapshot.val().user + "</p>");
+      if($("#chat .chatName:last").text() == snapshot.val().user) {
+        $("#chat").append("<p class=\"chatName\">" + snapshot.val().user + "</p>");
+      }
       $("#chat").append("<p>"+snapshot.val().chat + "</p>");
       var temp = "";
       database.ref().update({
