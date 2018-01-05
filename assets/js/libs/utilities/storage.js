@@ -6,13 +6,16 @@ database.ref().on("value", function(snapshot){
   else{
   	if(snapshot.val().images !== undefined){
   		images = snapshot.val().images;
+  		imageNum = images.length;
   		// console.log(image);
   		$(".carousel-inner").empty();
   		for(var i = 0; i < images.length; i++){
   			var div = document.createElement('div');
   			div.classList.add("carousel-item");
   			div.classList.add("col-md-3");
-  			div.classList.add("active");
+  			if(i === 0){
+  				div.classList.add("active");
+  			}
   			var divcard = document.createElement('div');
   			divcard.classList.add("card");
   			div.append(divcard);
@@ -50,7 +53,12 @@ $(document).on("click", ".share", function(){
 	// console.log(store);
 	// store = store.replace(/\\\//g, "/");
 	// console.log(store);
-	images.push(store);
+	if(imageNum < 10){
+		images.push(store);
+		imageNum++;
+	}else{
+			images[imageNum%10] = store;
+	}
 	database.ref().update({
 		images: images
 	});
